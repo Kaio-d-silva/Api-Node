@@ -23,7 +23,7 @@ let users = [];
  *         password:
  *           type: string
  *           description: The password of the user
- *       exemple:
+ *       example:
  *         id: d5fE_asz
  *         name: john Doe
  *         password: teste
