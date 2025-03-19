@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const bcrypt = require('bcrypt')
 
 class CriaUsuarioController  {
     /**
@@ -9,11 +10,15 @@ class CriaUsuarioController  {
     async handle(httpRequest) {
         try {
             const { nome, email, senha } = httpRequest.body;
+            
+            const salt = 10;
+
+            const senhaCriptografada = await bcrypt.hash(senha, salt)
 
             const usuario = await User.create({
                 nome,
                 email,
-                senha,
+                senha: senhaCriptografada,
             });
 
             return {
