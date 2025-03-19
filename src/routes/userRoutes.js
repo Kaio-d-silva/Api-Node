@@ -1,8 +1,9 @@
 const express = require('express');
 const User = require('../models/userModel');
 const router = express.Router();
+const routerAdapter = require('../adpters/express-route-adapter')
+const CriarUsuarioController = require('../controllers/criar-usuarios')
 
-let users = [];
 /**
  * @swagger
  * components:
@@ -11,36 +12,41 @@ let users = [];
  *       type: object
  *       required:
  *         - id
- *         - name
- *         - password
+ *         - nome
+ *         - senha
+ *         - email
  *       properties:
  *         id:
  *           type: string
- *           description: the auto-generated id of the user
- *         name:
+ *           description: O id é gerado automaticamente
+ *         nome:
  *           type: string
- *           description: the name of the user
- *         password:
+ *           description: O nome de usuário
+ *         senha:
  *           type: string
- *           description: The password of the user
+ *           description: A senha do usuário
+ *         email:
+ *           type: string
+ *           description: O email do usuário
  *       example:
- *         id: d5fE_asz
- *         name: john Doe
- *         password: teste
+ *         id: 1
+ *         nome: Jose Cleber
+ *         senha: 321
+ *         email: joaoCarlos@dominio.com
  */
 
 /**
  * @swagger
  * tags:
  *   name: Users
- *   description: the users managing API
+ *   description: Gerenciamento de usuários API
  */
 
 /**
  * @swagger
  * /api/users:
  *   post:
- *     summary: Creat a new user
+ *     summary: Cria um novo usuário
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -50,21 +56,14 @@ let users = [];
  *             $ref: '#/components/schemas/User'
  *     responses:
  *      201:
- *        description: The user was sucessfully created
+ *        description: O usuario foi criado com sucesso
  *      500:
- *        description: Some server error
+ *        description: Algum erro aconteceu
  * 
  */
 
 // Endpoint para criação de recurso
-router.post('/users', async (req, res) => {
-    try {
-        const user = await User.create(req.body);
-        res.status(201).json(user);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
+router.post('/users', routerAdapter(new CriarUsuarioController()));
 /**
  * @swagger
  * /api/users:
@@ -101,7 +100,7 @@ router.get('/users', async (req, res) => {
  *     tags: [Users]
  *     parameters:
  *       - in: path
- *         name: id
+ *         nome: id
  *         schema:
  *           type: string
  *         required: true
@@ -143,7 +142,7 @@ router.put('/users/:id', async (req, res) => {
  *     tags: [Users]
  *     parameters:
  *       - in: path
- *         name: id
+ *         nome: id
  *         schema:
  *           type: string
  *         required: true
