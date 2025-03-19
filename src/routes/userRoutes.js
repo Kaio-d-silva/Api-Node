@@ -31,7 +31,7 @@ const CriarUsuarioController = require('../controllers/criar-usuarios')
  *       example:
  *         id: 1
  *         nome: Jose Cleber
- *         senha: 321
+ *         senha: 321a
  *         email: joaoCarlos@dominio.com
  */
 
