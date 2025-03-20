@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/userModel');
-const routeAdapter = require('../adapters/express-route-adapters');
-const CriarUsuarioController = require('../controllers/criar-usuarios');
-const ListarUsuarioController = require('../controllers/listar-usuarios');
-const EditarUsuarioController = require('../controllers/editar-usuario');
-const DeletarUsuarioController = require('../controllers/deletar-usuario');
+// const routeAdapter = require('../adapters/express-route-adapters');
+const CriarUsuarioController = require('../controllers/usuario/criar-usuario');
+const ListarUsuarioController = require('../controllers/usuario/listar-usuarios');
+const EditarUsuarioController = require('../controllers/usuario/editar-usuario');
+const DeletarUsuarioController = require('../controllers/usuario/deletar-usuario');
 const adaptRoute = require('../adapters/express-route-adapters');
 
 
@@ -61,7 +60,7 @@ const adaptRoute = require('../adapters/express-route-adapters');
  *       500:
  *         description: Algum erro aconteceu
  */
-router.post('/users', routeAdapter(new CriarUsuarioController()));
+router.post('/users', adaptRoute(new CriarUsuarioController()));
 
 /**
  * @swagger
@@ -79,7 +78,7 @@ router.post('/users', routeAdapter(new CriarUsuarioController()));
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get('/users', routeAdapter(new ListarUsuarioController()));
+router.get('/users', adaptRoute(new ListarUsuarioController()));
 
 /**
  * @swagger

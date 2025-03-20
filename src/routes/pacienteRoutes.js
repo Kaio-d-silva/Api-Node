@@ -1,6 +1,9 @@
 const express = require('express');
 const Paciente = require('../models/pacienteModel');
+const CriaPacienteController = require('../controllers/paciente/criar-paciente')
+const adaptRoute = require('../adapters/express-route-adapters');
 const router = express.Router();
+
 
 /**
  * @swagger
@@ -77,14 +80,15 @@ const router = express.Router();
  */
 
 // Endpoint para criação de recurso
-router.post('/pacientes', async (req, res) => {
-    try {
-        const paciente = await Paciente.create(req.body);
-        res.status(201).json(paciente);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
+router.post('/pacientes', adaptRoute(new CriaPacienteController))
+// router.post('/pacientes', async (req, res) => {
+//     try {
+//         const paciente = await Paciente.create(req.body);
+//         res.status(201).json(paciente);
+//     } catch (error) {
+//         res.status(400).json({ error: error.message });
+//     }
+// });
 /**
  * @swagger
  * /api/pacientes:
