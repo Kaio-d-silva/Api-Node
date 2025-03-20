@@ -1,24 +1,15 @@
-const User = require('../models/userModel');
-const bcrypt = require('bcrypt')
+const Endereco = require('../../models/enderecoModel')
 
-class CriaUsuarioController  {
-    /**
-     * @param {HttpResquest} resquest - Objeto de requisição HTTP
-     * @returns {Promise<HttpResponse>}
-     */
+class CriaEnderecoController {
 
     async handle(httpRequest) {
         try {
             const { nome, email, senha } = httpRequest.body;
-            
-            const salt = 10;
-
-            const senhaCriptografada = await bcrypt.hash(senha, salt)
-
+        
             const usuario = await User.create({
                 nome,
                 email,
-                senha: senhaCriptografada,
+                senha
             });
 
             return {
@@ -34,4 +25,4 @@ class CriaUsuarioController  {
     }
 }
 
-module.exports = CriaUsuarioController;
+module.exports = CriaEnderecoController

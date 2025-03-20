@@ -1,14 +1,14 @@
-const User = require('../models/userModel');
+const User = require('../../models/userModel');
 
-class EditarUsuariosController {
+class DeletarUsuariosController {
     async handle(httpRequest) {
         try {
             const user = await User.findByPk(httpRequest.params.id);
             if (user) {
-                await user.update(httpRequest.body);
+                await user.destroy();
                 return{
-                    statusCode:200,
-                    body: user
+                    statusCode: 200,
+                    body: "Usuario deletado"
                 }
             } else {
                 return{
@@ -16,14 +16,13 @@ class EditarUsuariosController {
                     body: "User not found"
                 }
             }
-
         } catch (error) {
-            return {
-                statusCode: 400,
-                body: { error: error.message }
+            return{
+                statusCode: 500,
+                body: error.message
             }
         }
     }
 }
 
-module.exports = EditarUsuariosController;
+module.exports = DeletarUsuariosController

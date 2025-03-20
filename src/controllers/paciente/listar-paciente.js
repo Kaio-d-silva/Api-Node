@@ -1,5 +1,5 @@
 const { json } = require('sequelize');
-const User = require('../models/userModel');
+const User = require('../../models/userModel');
 
 class ListarUsuariosController {
     async handle(httpRequest) {
