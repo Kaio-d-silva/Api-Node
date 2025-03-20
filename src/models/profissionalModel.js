@@ -32,8 +32,8 @@ const Profissional = sequelize.define('Profissional', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references:{
-            model:'enderecoModel',
-            key: 'id_endereco'
+            model:'Enderecos',
+            key: 'id'
         }
     },
     cargo:{
@@ -47,4 +47,4 @@ const Profissional = sequelize.define('Profissional', {
 
 })
 
-module.exports = Profissional
+module.exports = Profissional;

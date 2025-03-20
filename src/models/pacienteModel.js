@@ -32,7 +32,7 @@ const Paciente = sequelize.define('Paciente' ,{
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'enderecoModel',
+            model: 'Enderecos',
             key: 'id'
         }
     }

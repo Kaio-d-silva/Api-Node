@@ -3,7 +3,7 @@ const sequelize = require('../database');
 
 
 const Endereco = sequelize.define('Endereco', {
-    id_endereco:{
+    id:{
         type: DataTypes.INTEGER,
         primaryKey: true
     },
@@ -41,4 +41,4 @@ const Endereco = sequelize.define('Endereco', {
 })
 
 
-module.exports = Endereco
+module.exports = Endereco;
