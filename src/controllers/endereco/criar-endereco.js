@@ -4,17 +4,28 @@ class CriaEnderecoController {
 
     async handle(httpRequest) {
         try {
-            const { nome, email, senha } = httpRequest.body;
+            const { 
+                logradouro,
+                numero,
+                complemento,
+                bairro,
+                cidade,
+                estado,
+                cep, } = httpRequest.body;
         
-            const usuario = await User.create({
-                nome,
-                email,
-                senha
+            const endereco = await Endereco.create({
+                logradouro,
+                numero,
+                complemento,
+                bairro,
+                cidade,
+                estado,
+                cep,
             });
 
             return {
                 statusCode: 201,
-                body: usuario,
+                body: endereco,
             };
         } catch (error) {
             return {
