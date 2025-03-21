@@ -5,6 +5,7 @@ const CriarUsuarioController = require('../controllers/usuario/criar-usuario');
 const ListarUsuarioController = require('../controllers/usuario/listar-usuarios');
 const EditarUsuarioController = require('../controllers/usuario/editar-usuario');
 const DeletarUsuarioController = require('../controllers/usuario/deletar-usuario');
+const LoginController = require("../controllers/login")
 const adaptRoute = require('../adapters/express-route-adapters');
 
 
@@ -42,6 +43,58 @@ const adaptRoute = require('../adapters/express-route-adapters');
  *   description: Gerenciamento de usuários API
  */
 
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Endpoints de autenticação
+ */
+
+
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Realiza o login do usuario
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - senha
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: Email do usuario
+ *               senha:
+ *                 type: string
+ *                 description: Senha do usuario
+ *             example:
+ *               email: "user.teste@gmail.com"
+ *               senha: "minha_senha"
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token: 
+ *                   type: string
+ *                   description: token JWT gerado
+ *       401:
+ *         description: Credenciais invalidas
+ *       404:
+ *         description: Usuário não encontrado
+ *       500: 
+ *         description: Erro interno do servidor
+ */
+router.post('/login', adaptRoute(new LoginController()))
 /**
  * @swagger
  * /api/users:
@@ -131,5 +184,8 @@ router.put('/users/:id', adaptRoute(new EditarUsuarioController()));
  *         description: Algum erro aconteceu
  */
 router.delete('/users/:id', adaptRoute(new DeletarUsuarioController()));
+
+
+
 
 module.exports = router;
