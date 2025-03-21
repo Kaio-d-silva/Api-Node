@@ -1,19 +1,19 @@
-const User = require('../../models/userModel');
+const Paciente = require('../../models/pacienteModel');
 
-class EditarUsuariosController {
+class EditarPacienteController {
     async handle(httpRequest) {
         try {
-            const user = await User.findByPk(httpRequest.params.id);
-            if (user) {
-                await user.update(httpRequest.body);
+            const paciente = await Paciente.findByPk(httpRequest.params.id);
+            if (paciente) {
+                await paciente.update(httpRequest.body);
                 return{
                     statusCode:200,
-                    body: user
+                    body: paciente
                 }
             } else {
                 return{
                     statusCode: 404,
-                    body: "User not found"
+                    body: "Paciente not found"
                 }
             }
 
@@ -26,4 +26,4 @@ class EditarUsuariosController {
     }
 }
 
-module.exports = EditarUsuariosController;
+module.exports = EditarPacienteController;

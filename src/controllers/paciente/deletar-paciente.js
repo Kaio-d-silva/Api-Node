@@ -1,19 +1,19 @@
-const User = require('../../models/userModel');
+const Paciente = require('../../models/pacienteModel');
 
-class DeletarUsuariosController {
+class DeletarPacienteController {
     async handle(httpRequest) {
         try {
-            const user = await User.findByPk(httpRequest.params.id);
-            if (user) {
-                await user.destroy();
+            const paciente = await Paciente.findByPk(httpRequest.params.id);
+            if (paciente) {
+                await paciente.destroy();
                 return{
                     statusCode: 200,
-                    body: "Usuario deletado"
+                    body: "Paciente deletado"
                 }
             } else {
                 return{
                     statusCode: 404,
-                    body: "User not found"
+                    body: "Paciente not found"
                 }
             }
         } catch (error) {
@@ -25,4 +25,4 @@ class DeletarUsuariosController {
     }
 }
 
-module.exports = DeletarUsuariosController
+module.exports = DeletarPacienteController
