@@ -1,6 +1,11 @@
 const express = require('express');
 const Paciente = require('../models/pacienteModel');
 const CriaPacienteController = require('../controllers/paciente/criar-paciente')
+const EditarPacienteController = require('../controllers/paciente/editar-paciente')
+const DeletarPacienteController = require('../controllers/paciente/deletar-paciente')
+const ListarPacienteController = require('../controllers/paciente/listar-paciente')
+
+
 const adaptRoute = require('../adapters/express-route-adapters');
 const router = express.Router();
 
@@ -43,13 +48,13 @@ const router = express.Router();
  *           description: the id of the address 
  *          
  *       example:
- *         id_paciente : 1
+ *         id : 1
  *         nome : john Doe
  *         data_nascimento : 01/02/2000
  *         cpf : 304.923.093-65
  *         telefone : 93528451
  *         email : email.example@gmail.com
- *         id_endereco : d1gE_asz
+ *         id_endereco : 1
  */
 
 /**
@@ -108,14 +113,7 @@ router.post('/pacientes', adaptRoute(new CriaPacienteController))
 
 
 // Endpoint para listagem de recursos
-router.get('/pacientes', async (req, res) => {
-    try {
-        const pacientes = await Paciente.findAll();
-        res.json(pacientes);
-    } catch (error) {
-        res.status(500).json({ error: error.message });s
-    }
-});
+router.get('/pacientes', adaptRoute(new ListarPacienteController))
 
 /**
  * @swagger
@@ -146,19 +144,7 @@ router.get('/pacientes', async (req, res) => {
  */
 
 // Endpoint para atualização de recurso
-router.put('/pacientes/:id', async (req, res) => {
-    try {
-        const paciente = await Paciente.findByPk(req.params.id);
-        if (paciente) {
-            await paciente.update(req.body);
-            res.json(paciente);
-        } else {
-            res.status(404).json({ error: 'Paciente not found' });
-        }
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
+router.put('/pacientes/:id', adaptRoute(new EditarPacienteController))
 /** 
  * @swagger
  * /api/pacientes/{id}:
@@ -181,18 +167,6 @@ router.put('/pacientes/:id', async (req, res) => {
  */
 
 // Endpoint para deletar recurso
-router.delete('/pacientes/:id', async (req, res) => {
-    try {
-        const paciente = await Paciente.findByPk(req.params.id);
-        if (paciente) {
-            await paciente.destroy();
-            res.json({ message: 'Paciente deleted' });
-        } else {
-            res.status(404).json({ error: 'Paciente not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+router.delete('/pacientes/:id', adaptRoute(new DeletarPacienteController))
 
 module.exports = router;
