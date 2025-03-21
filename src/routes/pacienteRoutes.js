@@ -21,7 +21,7 @@ const router = express.Router();
  *         - id_endereco
  *       properties:
  *         id:
- *           type: string
+ *           type: integer
  *           description: the auto-generated id of the paciente
  *         nome:
  *           type: string
@@ -43,7 +43,7 @@ const router = express.Router();
  *           description: the id of the address 
  *          
  *       example:
- *         id_paciente : d5fE_asz
+ *         id_paciente : 1
  *         nome : john Doe
  *         data_nascimento : 01/02/2000
  *         cpf : 304.923.093-65
