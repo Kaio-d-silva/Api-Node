@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
 const Paciente = sequelize.define('Paciente' ,{
-    id_user: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -23,20 +23,22 @@ const Paciente = sequelize.define('Paciente' ,{
         }
     },
     telefone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull:false
     },
     email:{
         type: DataTypes.STRING,
     },
     id_endereco: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Enderecos',
+            model: 'Endereco',
             key: 'id'
         }
     }
+},{
+    tableName: 'Pacientes'
 });
 
 module.exports = Paciente

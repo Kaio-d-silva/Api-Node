@@ -5,6 +5,7 @@ const sequelize = require('../database');
 const Endereco = sequelize.define('Endereco', {
     id:{
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
     logradouro:{
@@ -38,6 +39,8 @@ const Endereco = sequelize.define('Endereco', {
             is: /^\d{5}-\d{3}$/
         }
     }
+},{
+    tableName: 'Endereco'
 })
 
 
