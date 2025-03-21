@@ -1,6 +1,9 @@
 const express = require('express');
 const Endereco = require('../models/enderecoModel');
 const CriaEnderecoController = require('../controllers/endereco/criar-endereco')
+const EditarEnderecoController  = require('../controllers/endereco/editar-endereco')
+const ListarEnderecoController = require('../controllers/endereco/listar-endereco')
+const DeletarEnderecoController = require('../controllers/endereco/deletar-endereco')
 const adaptRoute = require('../adapters/express-route-adapters');
 const router = express.Router();
 
@@ -21,46 +24,45 @@ const router = express.Router();
  *         - estado
  *         - cep
  *       properties:
- *         id :
- *           type: string o id do endereco
- *           description: 
- *         logradouro :
+ *         id:
+ *           type: integer 
+ *           description: o id do endereco
+ *         logradouro:
  *           type: string
  *           description: o logradouro do paciente ou do funcionario 
- *         numero :
- *           type: string
+ *         numero:
+ *           type: integer
  *           description: o numero do paciente ou do funcionario 
- *         complemento :
+ *         complemento:
  *           type: string
  *           description: o complemento do paciente ou do funcionario 
- *         bairro :
+ *         bairro:
  *           type: string
  *           description: o bairro do paciente ou do funcionario 
- *         cidade :
+ *         cidade:
  *           type: string
  *           description: o cidade do paciente ou do funcionario 
- *         estado :
+ *         estado:
  *           type: string
  *           description: o estado do paciente ou do funcionario 
- *         cep :
+ *         cep:
  *           type: string
  *           description: o cep do paciente ou do funcionario 
- *          
  *       example:
- *         id : 1
- *         logradouro : nova aliança
- *         numero : 114
- *         complemento : perto do escola Erasmo braga 
- *         bairro : jardim independencia
- *         cidade : dourados
- *         estado : MS
- *         cep : 78934222
+ *         id: 1
+ *         logradouro: nova aliança
+ *         numero: 114
+ *         complemento: perto do escola Erasmo braga 
+ *         bairro: jardim independencia
+ *         cidade: dourados
+ *         estado: MS
+ *         cep: 78934222
  */
 
 /**
  * @swagger
  * tags:
- *   name: Endereços
+ *   name: Enderecos
  *   description: the enderecos managing API
  */
 
@@ -69,13 +71,13 @@ const router = express.Router();
  * /api/enderecos:
  *   post:
  *     summary: Creat a new endereco
- *     tags: [Endereços]
+ *     tags: [Enderecos]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Paciente'
+ *             $ref: '#/components/schemas/Endereco'
  *     responses:
  *      201:
  *        description: The Paciente was sucessfully created
@@ -86,20 +88,12 @@ const router = express.Router();
 
 // Endpoint para criação de recurso
 router.post('/enderecos', adaptRoute(new CriaEnderecoController))
-// router.post('/enderecos', async (req, res) => {
-//     try {
-//         const endereco = await Paciente.create(req.body);
-//         res.status(201).json(endereco);
-//     } catch (error) {
-//         res.status(400).json({ error: error.message });
-//     }
-// });
 /**
  * @swagger
  * /api/enderecos:
  *   get:
  *     summary: Retund the list of the enderecos
- *     tags: [Endereços]
+ *     tags: [Enderecos]
  *     responses:
  *       200:
  *         description: The list of the enderecos
@@ -108,26 +102,19 @@ router.post('/enderecos', adaptRoute(new CriaEnderecoController))
  *              schema:
  *                type: array
  *                items:
- *                  $ref: '#/components/schemas/Paciente'
+ *                  $ref: '#/components/schemas/Endereco'
  */
 
 
 // Endpoint para listagem de recursos
-router.get('/enderecos', async (req, res) => {
-    try {
-        const enderecos = await Paciente.findAll();
-        res.json(enderecos);
-    } catch (error) {
-        res.status(500).json({ error: error.message });s
-    }
-});
+router.get('/enderecos', adaptRoute(new ListarEnderecoController))
 
 /**
  * @swagger
  * /api/enderecos/{id}:
  *   put:
  *     summary: Upadate the endereco by the id
- *     tags: [Endereços]
+ *     tags: [Enderecos]
  *     parameters:
  *       - in: path
  *         name: id
@@ -140,7 +127,7 @@ router.get('/enderecos', async (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Paciente'
+ *             $ref: '#/components/schemas/Endereco'
  *     responses:
  *       200:
  *         description: The endereco was updated
@@ -151,25 +138,14 @@ router.get('/enderecos', async (req, res) => {
  */
 
 // Endpoint para atualização de recurso
-router.put('/enderecos/:id', async (req, res) => {
-    try {
-        const endereco = await Paciente.findByPk(req.params.id);
-        if (endereco) {
-            await endereco.update(req.body);
-            res.json(endereco);
-        } else {
-            res.status(404).json({ error: 'Paciente not found' });
-        }
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
+router.put('/enderecos/:id', adaptRoute(new EditarEnderecoController))
+
 /** 
  * @swagger
  * /api/enderecos/{id}:
  *   delete:
  *     summary: Remove the endereco by id
- *     tags: [Endereços]
+ *     tags: [Enderecos]
  *     parameters:
  *       - in: path
  *         name: id
@@ -186,18 +162,7 @@ router.put('/enderecos/:id', async (req, res) => {
  */
 
 // Endpoint para deletar recurso
-router.delete('/enderecos/:id', async (req, res) => {
-    try {
-        const endereco = await Paciente.findByPk(req.params.id);
-        if (endereco) {
-            await endereco.destroy();
-            res.json({ message: 'Paciente deleted' });
-        } else {
-            res.status(404).json({ error: 'Paciente not found' });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+router.delete('/enderecos/:id', adaptRoute(new DeletarEnderecoController))
+
 
 module.exports = router;
