@@ -1,13 +1,13 @@
 const { json } = require('sequelize');
-const User = require('../../models/userModel');
+const Paciente = require('../../models/pacienteModel');
 
-class ListarUsuariosController {
+class ListarPacienteController {
     async handle(httpRequest) {
         try {
-            const users = await User.findAll();
+            const pacientes = await Paciente.findAll();
             return {
                 statusCode: 200,
-                body: users
+                body: pacientes
             }
             
         } catch (error) {
@@ -19,4 +19,4 @@ class ListarUsuariosController {
     }
 }
 
-module.exports = ListarUsuariosController
+module.exports = ListarPacienteController
