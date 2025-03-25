@@ -23,6 +23,7 @@ const router = express.Router();
  *         - cidade
  *         - estado
  *         - cep
+ *         - id_paciente
  *       properties:
  *         id:
  *           type: integer 
@@ -48,6 +49,9 @@ const router = express.Router();
  *         cep:
  *           type: string
  *           description: o cep do paciente ou do funcionario 
+ *         id_paciente:
+ *           type: integer
+ *           description: Id endereço
  *       example:
  *         id: 1
  *         logradouro: nova aliança
@@ -57,6 +61,7 @@ const router = express.Router();
  *         cidade: dourados
  *         estado: MS
  *         cep: 78934222
+ *         id_paciente: 1
  */
 
 /**

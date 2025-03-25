@@ -23,7 +23,6 @@ const router = express.Router();
  *         - cpf
  *         - telefone
  *         - email
- *         - id_endereco
  *       properties:
  *         id:
  *           type: integer
@@ -42,10 +41,7 @@ const router = express.Router();
  *           description: The telephone of the paciente
  *         email:
  *           type: string
- *           description: The email of the paciente
- *         id_endereco:
- *           type: string
- *           description: the id of the address 
+ *           description: The email of the paciente 
  *          
  *       example:
  *         id : 1
@@ -54,7 +50,6 @@ const router = express.Router();
  *         cpf : 304.923.093-65
  *         telefone : 93528451
  *         email : email.example@gmail.com
- *         id_endereco : 1
  */
 
 /**
@@ -86,14 +81,6 @@ const router = express.Router();
 
 // Endpoint para criação de recurso
 router.post('/pacientes', adaptRoute(new CriaPacienteController))
-// router.post('/pacientes', async (req, res) => {
-//     try {
-//         const paciente = await Paciente.create(req.body);
-//         res.status(201).json(paciente);
-//     } catch (error) {
-//         res.status(400).json({ error: error.message });
-//     }
-// });
 /**
  * @swagger
  * /api/pacientes:
