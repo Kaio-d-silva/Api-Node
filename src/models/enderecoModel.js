@@ -38,6 +38,14 @@ const Endereco = sequelize.define('Endereco', {
         validade:{
             is: /^\d{5}-\d{3}$/
         }
+    },
+    id_paciente:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Pacientes',
+            key: 'id'
+        }
     }
 },{
     tableName: 'Endereco'

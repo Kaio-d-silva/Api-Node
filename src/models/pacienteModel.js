@@ -29,14 +29,14 @@ const Paciente = sequelize.define('Paciente' ,{
     email:{
         type: DataTypes.STRING,
     },
-    id_endereco: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'Endereco',
-            key: 'id'
-        }
-    }
+    // id_endereco: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     references: {
+    //         model: 'Endereco',
+    //         key: 'id'
+    //     }
+    // }
 },{
     tableName: 'Pacientes'
 });
