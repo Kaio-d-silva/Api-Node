@@ -89,7 +89,7 @@ router.post('/users', authMiddleware, adaptRoute(new CriarUsuarioController()));
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get('/users', adaptRoute(new ListarUsuarioController()));
+router.get('/users:id',authMiddleware, adaptRoute(new ListarUsuarioController()));
 
 /**
  * @swagger
@@ -118,7 +118,7 @@ router.get('/users', adaptRoute(new ListarUsuarioController()));
  *       500:
  *         description: Algum erro aconteceu
  */
-router.put('/users/:id', adaptRoute(new EditarUsuarioController()));
+router.put('/users/:id',authMiddleware, adaptRoute(new EditarUsuarioController()));
 
 /**
  * @swagger
@@ -141,7 +141,7 @@ router.put('/users/:id', adaptRoute(new EditarUsuarioController()));
  *       500:
  *         description: Algum erro aconteceu
  */
-router.delete('/users/:id', adaptRoute(new DeletarUsuarioController()));
+router.delete('/users/:id',authMiddleware, adaptRoute(new DeletarUsuarioController()));
 
 
 
