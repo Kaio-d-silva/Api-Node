@@ -14,7 +14,6 @@ const middlewares = require('./middlewares')
 const app = express();
 
 const initialPort = process.env.PORT || 3000;
-console.log(`Servidor rodando na porta ${initialPort}`);
 
 
 // Configura o Swagger
