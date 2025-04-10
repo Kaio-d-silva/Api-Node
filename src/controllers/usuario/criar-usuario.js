@@ -1,37 +1,37 @@
 const User = require('../../models/userModel');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
-class CriaUsuarioController  {
-    /**
-     * @param {HttpResquest} resquest - Objeto de requisição HTTP
-     * @returns {Promise<HttpResponse>}
-     */
+class CriaUsuarioController {
+  /**
+   * @param {HttpResquest} resquest - Objeto de requisição HTTP
+   * @returns {Promise<HttpResponse>}
+   */
 
-    async handle(httpRequest) {
-        try {
-            const { nome, email, senha } = httpRequest.body;
-            
-            const salt = 10;
+  async handle(httpRequest) {
+    try {
+      const { nome, email, senha } = httpRequest.body;
 
-            const senhaCriptografada = await bcrypt.hash(senha, salt)
+      const salt = 10;
 
-            const usuario = await User.create({
-                nome,
-                email,
-                senha: senhaCriptografada,
-            });
+      const senhaCriptografada = await bcrypt.hash(senha, salt);
 
-            return {
-                statusCode: 201,
-                body: usuario,
-            };
-        } catch (error) {
-            return {
-                statusCode: 500,
-                body: {error: error.message},
-            };
-        }
+      const usuario = await User.create({
+        nome,
+        email,
+        senha: senhaCriptografada,
+      });
+
+      return {
+        statusCode: 201,
+        body: usuario,
+      };
+    } catch (error) {
+      return {
+        statusCode: 500,
+        body: { error: error.message },
+      };
     }
+  }
 }
 
 module.exports = CriaUsuarioController;

@@ -7,7 +7,7 @@ const EditarUsuarioController = require('../controllers/usuario/editar-usuario')
 const DeletarUsuarioController = require('../controllers/usuario/deletar-usuario');
 
 const adaptRoute = require('../adapters/express-route-adapters');
-const authMiddleware = require('../middlewares/auth-middlewares')
+const authMiddleware = require('../middlewares/auth-middlewares');
 
 /**
  * @swagger
@@ -16,7 +16,7 @@ const authMiddleware = require('../middlewares/auth-middlewares')
  *     bearerAuth:
  *       type: http
  *       scheme: bearer
- *       bearerFormat: JWT 
+ *       bearerFormat: JWT
  */
 /**
  * @swagger
@@ -89,7 +89,11 @@ router.post('/users', authMiddleware, adaptRoute(new CriarUsuarioController()));
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get('/users:id',authMiddleware, adaptRoute(new ListarUsuarioController()));
+router.get(
+  '/users:id',
+  authMiddleware,
+  adaptRoute(new ListarUsuarioController())
+);
 
 /**
  * @swagger
@@ -118,7 +122,11 @@ router.get('/users:id',authMiddleware, adaptRoute(new ListarUsuarioController())
  *       500:
  *         description: Algum erro aconteceu
  */
-router.put('/users/:id',authMiddleware, adaptRoute(new EditarUsuarioController()));
+router.put(
+  '/users/:id',
+  authMiddleware,
+  adaptRoute(new EditarUsuarioController())
+);
 
 /**
  * @swagger
@@ -141,9 +149,10 @@ router.put('/users/:id',authMiddleware, adaptRoute(new EditarUsuarioController()
  *       500:
  *         description: Algum erro aconteceu
  */
-router.delete('/users/:id',authMiddleware, adaptRoute(new DeletarUsuarioController()));
-
-
-
+router.delete(
+  '/users/:id',
+  authMiddleware,
+  adaptRoute(new DeletarUsuarioController())
+);
 
 module.exports = router;

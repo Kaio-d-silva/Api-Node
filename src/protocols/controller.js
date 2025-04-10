@@ -14,4 +14,4 @@
  * @property {(httpRequest: HttpRequest) => Promise<HttpResponse} handle
  */
 
-module.exports = {}
+module.exports = {};

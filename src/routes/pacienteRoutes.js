@@ -1,13 +1,11 @@
 const express = require('express');
-const CriaPacienteController = require('../controllers/paciente/criar-paciente')
-const EditarPacienteController = require('../controllers/paciente/editar-paciente')
-const DeletarPacienteController = require('../controllers/paciente/deletar-paciente')
-const ListarPacienteController = require('../controllers/paciente/listar-paciente')
-
+const CriaPacienteController = require('../controllers/paciente/criar-paciente');
+const EditarPacienteController = require('../controllers/paciente/editar-paciente');
+const DeletarPacienteController = require('../controllers/paciente/deletar-paciente');
+const ListarPacienteController = require('../controllers/paciente/listar-paciente');
 
 const adaptRoute = require('../adapters/express-route-adapters');
 const router = express.Router();
-
 
 /**
  * @swagger
@@ -40,8 +38,8 @@ const router = express.Router();
  *           description: The telephone of the paciente
  *         email:
  *           type: string
- *           description: The email of the paciente 
- *          
+ *           description: The email of the paciente
+ *
  *       example:
  *         id : 1
  *         nome : john Doe
@@ -75,11 +73,11 @@ const router = express.Router();
  *        description: The Paciente was sucessfully created
  *      500:
  *        description: Some server error
- * 
+ *
  */
 
 // Endpoint para criação de recurso
-router.post('/pacientes', adaptRoute(new CriaPacienteController))
+router.post('/pacientes', adaptRoute(new CriaPacienteController()));
 /**
  * @swagger
  * /api/pacientes:
@@ -97,9 +95,8 @@ router.post('/pacientes', adaptRoute(new CriaPacienteController))
  *                  $ref: '#/components/schemas/Paciente'
  */
 
-
 // Endpoint para listagem de recursos
-router.get('/pacientes', adaptRoute(new ListarPacienteController))
+router.get('/pacientes', adaptRoute(new ListarPacienteController()));
 
 /**
  * @swagger
@@ -130,8 +127,8 @@ router.get('/pacientes', adaptRoute(new ListarPacienteController))
  */
 
 // Endpoint para atualização de recurso
-router.put('/pacientes/:id', adaptRoute(new EditarPacienteController))
-/** 
+router.put('/pacientes/:id', adaptRoute(new EditarPacienteController()));
+/**
  * @swagger
  * /api/pacientes/{id}:
  *   delete:
@@ -149,10 +146,10 @@ router.put('/pacientes/:id', adaptRoute(new EditarPacienteController))
  *         description: The paciente was deleted
  *       404:
  *         description: The paciente was not found
- *    
+ *
  */
 
 // Endpoint para deletar recurso
-router.delete('/pacientes/:id', adaptRoute(new DeletarPacienteController))
+router.delete('/pacientes/:id', adaptRoute(new DeletarPacienteController()));
 
 module.exports = router;

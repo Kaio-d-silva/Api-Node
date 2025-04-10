@@ -1,33 +1,35 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
-const Paciente = sequelize.define('Paciente' ,{
+const Paciente = sequelize.define(
+  'Paciente',
+  {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     nome: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     data_nascimento: {
-        type: DataTypes.DATE,
-        allowNull: false
+      type: DataTypes.DATE,
+      allowNull: false,
     },
-    cpf:{
-        type: DataTypes.STRING(14),
-        allowNull: false,
-        validate:{
-            is: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/
-        }
+    cpf: {
+      type: DataTypes.STRING(14),
+      allowNull: false,
+      validate: {
+        is: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
+      },
     },
     telefone: {
-        type: DataTypes.STRING,
-        allowNull:false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    email:{
-        type: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
     },
     // id_endereco: {
     //     type: DataTypes.INTEGER,
@@ -37,8 +39,10 @@ const Paciente = sequelize.define('Paciente' ,{
     //         key: 'id'
     //     }
     // }
-},{
-    tableName: 'Pacientes'
-});
+  },
+  {
+    tableName: 'Pacientes',
+  }
+);
 
-module.exports = Paciente
+module.exports = Paciente;

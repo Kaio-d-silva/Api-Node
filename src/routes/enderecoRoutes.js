@@ -1,11 +1,10 @@
 const express = require('express');
-const CriaEnderecoController = require('../controllers/endereco/criar-endereco')
-const EditarEnderecoController  = require('../controllers/endereco/editar-endereco')
-const ListarEnderecoController = require('../controllers/endereco/listar-endereco')
-const DeletarEnderecoController = require('../controllers/endereco/deletar-endereco')
+const CriaEnderecoController = require('../controllers/endereco/criar-endereco');
+const EditarEnderecoController = require('../controllers/endereco/editar-endereco');
+const ListarEnderecoController = require('../controllers/endereco/listar-endereco');
+const DeletarEnderecoController = require('../controllers/endereco/deletar-endereco');
 const adaptRoute = require('../adapters/express-route-adapters');
 const router = express.Router();
-
 
 /**
  * @swagger
@@ -25,29 +24,29 @@ const router = express.Router();
  *         - id_paciente
  *       properties:
  *         id:
- *           type: integer 
+ *           type: integer
  *           description: o id do endereco
  *         logradouro:
  *           type: string
- *           description: o logradouro do paciente ou do funcionario 
+ *           description: o logradouro do paciente ou do funcionario
  *         numero:
  *           type: integer
- *           description: o numero do paciente ou do funcionario 
+ *           description: o numero do paciente ou do funcionario
  *         complemento:
  *           type: string
- *           description: o complemento do paciente ou do funcionario 
+ *           description: o complemento do paciente ou do funcionario
  *         bairro:
  *           type: string
- *           description: o bairro do paciente ou do funcionario 
+ *           description: o bairro do paciente ou do funcionario
  *         cidade:
  *           type: string
- *           description: o cidade do paciente ou do funcionario 
+ *           description: o cidade do paciente ou do funcionario
  *         estado:
  *           type: string
- *           description: o estado do paciente ou do funcionario 
+ *           description: o estado do paciente ou do funcionario
  *         cep:
  *           type: string
- *           description: o cep do paciente ou do funcionario 
+ *           description: o cep do paciente ou do funcionario
  *         id_paciente:
  *           type: integer
  *           description: Id endereço
@@ -55,7 +54,7 @@ const router = express.Router();
  *         id: 1
  *         logradouro: nova aliança
  *         numero: 114
- *         complemento: perto do escola Erasmo braga 
+ *         complemento: perto do escola Erasmo braga
  *         bairro: jardim independencia
  *         cidade: dourados
  *         estado: MS
@@ -87,11 +86,11 @@ const router = express.Router();
  *        description: The Paciente was sucessfully created
  *      500:
  *        description: Some server error
- * 
+ *
  */
 
 // Endpoint para criação de recurso
-router.post('/enderecos', adaptRoute(new CriaEnderecoController))
+router.post('/enderecos', adaptRoute(new CriaEnderecoController()));
 /**
  * @swagger
  * /api/enderecos:
@@ -109,9 +108,8 @@ router.post('/enderecos', adaptRoute(new CriaEnderecoController))
  *                  $ref: '#/components/schemas/Endereco'
  */
 
-
 // Endpoint para listagem de recursos
-router.get('/enderecos', adaptRoute(new ListarEnderecoController))
+router.get('/enderecos', adaptRoute(new ListarEnderecoController()));
 
 /**
  * @swagger
@@ -142,9 +140,9 @@ router.get('/enderecos', adaptRoute(new ListarEnderecoController))
  */
 
 // Endpoint para atualização de recurso
-router.put('/enderecos/:id', adaptRoute(new EditarEnderecoController))
+router.put('/enderecos/:id', adaptRoute(new EditarEnderecoController()));
 
-/** 
+/**
  * @swagger
  * /api/enderecos/{id}:
  *   delete:
@@ -162,11 +160,10 @@ router.put('/enderecos/:id', adaptRoute(new EditarEnderecoController))
  *         description: The endereco was deleted
  *       404:
  *         description: The endereco was not found
- *    
+ *
  */
 
 // Endpoint para deletar recurso
-router.delete('/enderecos/:id', adaptRoute(new DeletarEnderecoController))
-
+router.delete('/enderecos/:id', adaptRoute(new DeletarEnderecoController()));
 
 module.exports = router;

@@ -1,8 +1,7 @@
-const LoginController = require("../controllers/usuario/login")
+const LoginController = require('../controllers/usuario/login');
 const express = require('express');
 const router = express.Router();
 const adaptRoute = require('../adapters/express-route-adapters');
-
 
 /**
  * @swagger
@@ -44,16 +43,16 @@ const adaptRoute = require('../adapters/express-route-adapters');
  *             schema:
  *               type: object
  *               properties:
- *                 token: 
+ *                 token:
  *                   type: string
  *                   description: token JWT gerado
  *       401:
  *         description: Credenciais invalidas
  *       404:
  *         description: Usuário não encontrado
- *       500: 
+ *       500:
  *         description: Erro interno do servidor
  */
 router.post('/login', adaptRoute(new LoginController()));
 
-module.exports = router
+module.exports = router;
