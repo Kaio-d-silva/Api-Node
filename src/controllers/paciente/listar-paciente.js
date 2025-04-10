@@ -1,8 +1,7 @@
-const { json } = require('sequelize');
 const Paciente = require('../../models/pacienteModel');
 
 class ListarPacienteController {
-    async handle(httpRequest) {
+    async handle() {
         try {
             const pacientes = await Paciente.findAll();
             return {

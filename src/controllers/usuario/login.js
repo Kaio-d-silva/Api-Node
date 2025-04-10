@@ -1,9 +1,6 @@
-const User = require('../models/userModel');
+const User = require('../../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { message } = require('prompt');
-const { Model } = require('sequelize');
-const { READUNCOMMITTED } = require('sequelize/lib/table-hints');
 
 class LoginController {
     /**
@@ -34,7 +31,9 @@ class LoginController {
             }
 
             // Gerar o token JWT
+            /*eslint-disable-next-line no-undef */
             const token = jwt.sign({id: user.id, email: user.email} , process.env.JWT_SECRET, {
+                /*eslint-disable-next-line no-undef */
                 expiresIn: process.env.JWT_EXPIRES_IN //token válidi por 1 hora
             });
 

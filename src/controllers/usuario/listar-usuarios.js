@@ -1,8 +1,7 @@
-const { json } = require('sequelize');
 const User = require('../../models/userModel');
 
 class ListarUsuariosController {
-    async handle(req, res) {
+    async handle(req) {
         try {
             const userId = req.parms?.id;
             const usuario = await User.findByPk(userId)

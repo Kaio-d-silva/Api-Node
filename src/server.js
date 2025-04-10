@@ -5,7 +5,6 @@ const path = require('path');
 const {swaggerUi, specs} = require('./sweggerConfig') // Importar configuração do Swagger
 
 const sequelize = require('./database'); // Importar a configuração do banco de dados
-const User = require('./models/userModel'); // Importar o modelo de usuário
 
 // Middlewares
 const middlewares = require('./middlewares')
@@ -13,8 +12,8 @@ const middlewares = require('./middlewares')
 // Cria o servidor express
 const app = express();
 
+/*eslint-disable-next-line no-undef */
 const initialPort = process.env.PORT || 3000;
-
 
 // Configura o Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
@@ -24,6 +23,7 @@ app.use(middlewares.cors);
 app.use(middlewares.contenType);
 
 // Carregar dinamicamente todas as rotas na pasta 'routes'
+/*eslint-disable-next-line no-undef */
 fs.readdirSync(path.join(__dirname, 'routes')).forEach(file => {
     const route = require(`./routes/${file}`);
     app.use('/api', route);

@@ -1,5 +1,4 @@
 const express = require('express');
-const Endereco = require('../models/enderecoModel');
 const CriaEnderecoController = require('../controllers/endereco/criar-endereco')
 const EditarEnderecoController  = require('../controllers/endereco/editar-endereco')
 const ListarEnderecoController = require('../controllers/endereco/listar-endereco')

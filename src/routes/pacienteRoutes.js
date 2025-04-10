@@ -1,5 +1,4 @@
 const express = require('express');
-const Paciente = require('../models/pacienteModel');
 const CriaPacienteController = require('../controllers/paciente/criar-paciente')
 const EditarPacienteController = require('../controllers/paciente/editar-paciente')
 const DeletarPacienteController = require('../controllers/paciente/deletar-paciente')

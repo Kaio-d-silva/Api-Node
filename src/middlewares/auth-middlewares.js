@@ -14,11 +14,13 @@ const authMiddleware = (req, res, next) => {
     }
 
     try {
+        /*eslint-disable-next-line no-undef */
         const decoded = jwt.verify(token, process.env.JWT_SECRET); //Valida token
         console.log(decoded);
         req.user = decoded; //Adiciona os dados do usuário decodificados ao objeto da requisição
         next(); // Continua para a próxima função
     } catch (error) {
+        console.error(error)
         return res.status(403).json({ message: 'Token invalido ou expirado'})
     }
 };

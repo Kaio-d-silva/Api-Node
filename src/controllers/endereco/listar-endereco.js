@@ -1,8 +1,7 @@
-const { json } = require('sequelize');
 const Endereco = require('../../models/enderecoModel');
 
 class ListarEnderecoController {
-    async handle(httpRequest) {
+    async handle() {
         try {
             const endereco = await Endereco.findAll();
             return {
