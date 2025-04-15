@@ -31,9 +31,9 @@ class LoginController {
       }
 
       // Gerar o token JWT
-      /*eslint-disable-next-line no-undef */
       const token = jwt.sign(
         { id: user.id, email: user.email },
+        /*eslint-disable-next-line no-undef */
         process.env.JWT_SECRET,
         {
           /*eslint-disable-next-line no-undef */
@@ -41,9 +41,19 @@ class LoginController {
         }
       );
 
+      const refreshToken = jwt.sign(
+        { id: user.id },
+        /*eslint-disable-next-line no-undef */
+        process.env.JWT_REFRESH_SECRET,
+        {
+          /*eslint-disable-next-line no-undef */
+          expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d', //token válidi por 1 hora
+        }
+      );
+
       return {
         statusCode: 200,
-        body: { token },
+        body: { token, refreshToken },
       };
     } catch (error) {
       return {
