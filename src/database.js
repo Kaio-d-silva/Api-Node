@@ -1,10 +1,24 @@
 const { Sequelize } = require('sequelize');
-const path = require('path');
+const config = require('../config/config.json')
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  /*eslint-disable-next-line no-undef */
-  storage: path.join(__dirname, 'database.sqlite'),
-});
+//Determinar o ambiente atual (default: development)
+// eslint-disable-next-line no-undef
+const env = process.env.NODE_ENV || 'development';
+
+// Carregar as configurações do ambiente atual
+const dbConfig = config[env];
+
+// Inicializar o Sequelize com as configurações carregadas
+const sequelize = new Sequelize(
+  dbConfig.database, // Nome do banco de dados
+  dbConfig.username, // Nome de usuário
+  dbConfig.password, // Senha do banco
+  {
+    host: dbConfig.host, // Host do banco de dados
+    dialect: dbConfig.dialect, //Dialeto (mysql)
+    port: dbConfig.port, // Porta do banco de dados
+    logging: dbConfig.logging || false, // Desabilitar logs do Sequelize (opcional)
+  }
+);
 
 module.exports = sequelize;
