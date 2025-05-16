@@ -9,21 +9,37 @@ const FormularioGlicemia = sequelize.define(
         autoIncrement: true,
         primaryKey: true,
         },
-        data: {
+        data_prenchimento: {
         type: DataTypes.DATE,
         allowNull: false,
         },
-        hora: {
+        hora_preenchimento: {
         type: DataTypes.TIME,
         allowNull: false,
         },
-        glicemia: {
+        data : {
+        type: DataTypes.DATE,
+        allowNull: false,
+        },
+        glicemia_jejum: {
         type: DataTypes.FLOAT,
         allowNull: false,
         },
-        tipo_glicemia: {
-        type: DataTypes.STRING(50),
+        glicemia_pre_almoco: {
+        type: DataTypes.FLOAT,
         allowNull: false,
+        },
+        glicemia_apos_almoco: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+        },
+        glicemia_pre_janta: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+        },
+        glicemia_apos_janta: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
         },
         id_paciente: {
         type: DataTypes.INTEGER,
