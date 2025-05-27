@@ -1,8 +1,20 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../database');
+import { Model, DataTypes } from "sequelize";
+import sequelize from '../database';
 
-const Endereco = sequelize.define(
-  'Endereco',
+
+class Endereco extends Model {
+  id!: number;
+  logradouro!: string;
+  numero!: number;
+  complemento!: string;
+  bairro!: string;
+  cidade!: string;
+  estado!: string;
+  cep!: string;
+  id_paciente!: number;
+}
+
+Endereco.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,7 +26,7 @@ const Endereco = sequelize.define(
       allowNull: false,
     },
     numero: {
-      type: DataTypes.INTEGER(10),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     complemento: {
@@ -36,7 +48,7 @@ const Endereco = sequelize.define(
     cep: {
       type: DataTypes.STRING(9),
       allowNull: false,
-      validade: {
+      validate: {
         is: /^\d{5}-\d{3}$/,
       },
     },
@@ -50,8 +62,9 @@ const Endereco = sequelize.define(
     },
   },
   {
+    sequelize,
     tableName: 'Endereco',
   }
 );
 
-module.exports = Endereco;
+export default Endereco

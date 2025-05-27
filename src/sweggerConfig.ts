@@ -7,7 +7,7 @@ const options = {
     info: {
       title: 'User API',
       version: '1.0.0',
-      description: 'API para gerenciamento de usuarios',
+      description: 'API para gerenciamento de usuários',
     },
   },
   apis: ['./src/routes/*.ts'], // Caminho para os arquivos de rotas
@@ -15,7 +15,7 @@ const options = {
 
 const specs = swaggerJsdoc(options);
 
-module.exports = {
+export {
   swaggerUi,
   specs,
 };

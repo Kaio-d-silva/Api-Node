@@ -1,8 +1,16 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../database');
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../database';
 
-const Paciente = sequelize.define(
-  'Paciente',
+
+export class Paciente extends Model {
+  id!: number;
+  nome!: string;
+  data_nascimento!: Date;
+  cpf!: string;
+  telefone!: string;
+  email?: string; // Optional field
+}
+Paciente.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -30,19 +38,12 @@ const Paciente = sequelize.define(
     },
     email: {
       type: DataTypes.STRING,
-    },
-    // id_endereco: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: 'Endereco',
-    //         key: 'id'
-    //     }
-    // }
+    }
   },
   {
-    tableName: 'Pacientes',
+    sequelize,
+    modelName: 'Pacientes',
   }
 );
 
-module.exports = Paciente;
+export default Paciente;
