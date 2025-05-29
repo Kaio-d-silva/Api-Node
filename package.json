@@ -5,6 +5,7 @@
   "repository": "https://github.com/Kaio-d-silva/Api-Node.git",
   "author": "Your Name <you@example.com>",
   "license": "MIT",
+  "scripts": {"start": "nodemon src/server.ts"},
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/dotenv": "^8.2.3",
