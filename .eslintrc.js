@@ -1,13 +1,13 @@
 module.exports = {
   env: {
-    broser: false,
+    browser: false,
     node: true,
     es2021: true,
   },
   extends: ['airbnb-base'],
   rules: {
     // Adicione regras personalizadas aqui, se necessario
-    'no-console': 'off', //Permitir console.log
-    'no-usuned-vars': ['warn', { argsIgnorePattern: '^_' }], //Avisar sobre as variaveis não usadas
+    'no-console': 'off', // Permitir console.log
+    'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }], // Avisar sobre as variaveis não usadas
   },
 };
