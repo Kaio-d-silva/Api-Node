@@ -1,6 +1,7 @@
-const LoginController = require('../controllers/usuario/login');
-const RefreshTokenController = require('../controllers/usuario/refresh-token')
 const express = require('express');
+const LoginController = require('../controllers/usuario/login');
+const RefreshTokenController = require('../controllers/usuario/refresh-token');
+
 const router = express.Router();
 const adaptRoute = require('../adapters/express-route-adapters');
 
@@ -34,8 +35,8 @@ const adaptRoute = require('../adapters/express-route-adapters');
  *                 type: string
  *                 description: Senha do usuario
  *             example:
- *               email: "user.teste@gmail.com"
- *               senha: "minha_senha"
+ *               senha: "123abc"
+ *               email: "joao.login@dominio.com"
  *     responses:
  *       200:
  *         description: Login realizado com sucesso
@@ -68,14 +69,14 @@ router.post('/login', adaptRoute(new LoginController()));
  *              application/json:
  *                  schema:
  *                      type: object
- *                      required: 
+ *                      required:
  *                          - refreshToken
  *                      properties:
  *                          refreshToken:
  *                              type: string
  *                              description: Token de atualização
  *                      example:
- *                          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqb2FvLnRlc3RlQGRvbWluaW8uY29tIiwiaWF0IjoxNzQ0Njc0ODQ0LCJleHAiOjE3NDQ2Nzg0NDR9.J4jZqM-6OXLBz_o8H99Jt5DQa9XZKm49mQsjxm4h0QY
+ *                          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.J4jZqM-6OXLBz_o8H99J
  *      responses:
  *          200:
  *              description: token de acesso gerado com sucesso
@@ -88,7 +89,7 @@ router.post('/login', adaptRoute(new LoginController()));
  *                                  type: string
  *                                  description: token de acesso gerado
  *                          example:
- *                              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJqb2FvLnRlc3RlQGRvbWluaW8uY29tIiwiaWF0IjoxNzQ0Njc0ODQ0LCJleHAiOjE3NDQ2Nzg0NDR9.
+ *                              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJ
  *          400:
  *              description: Token de atualização não fornecido
  *          403:
@@ -96,5 +97,5 @@ router.post('/login', adaptRoute(new LoginController()));
  *          500:
  *              description: Erro interno do servidor
  */
-router.post('/refresh-token', adaptRoute((new RefreshTokenController)))
+router.post('/refresh-token', adaptRoute((new RefreshTokenController())));
 module.exports = router;

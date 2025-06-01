@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 // const routeAdapter = require('../adapters/express-route-adapters');
 const CriarUsuarioController = require('../controllers/usuario/criar-usuario');
@@ -42,7 +43,7 @@ const authMiddleware = require('../middlewares/auth-middlewares');
  *         id: 1
  *         nome: João da Silva
  *         senha: 123abc
- *         email: joao.silva@dominio.com
+ *         email: joao.login@dominio.com
  */
 
 /**
@@ -79,6 +80,8 @@ router.post('/users', authMiddleware, adaptRoute(new CriarUsuarioController()));
  *   get:
  *     summary: Retorna a lista de usuários
  *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A lista de usuários foi retornada com sucesso
@@ -89,11 +92,7 @@ router.post('/users', authMiddleware, adaptRoute(new CriarUsuarioController()));
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-router.get(
-  '/users/:id?',
-  authMiddleware,
-  adaptRoute(new ListarUsuarioController())
-);
+router.get('/users/:id?', authMiddleware, adaptRoute(new ListarUsuarioController()));
 
 /**
  * @swagger
@@ -101,6 +100,8 @@ router.get(
  *   put:
  *     summary: Atualiza o usuário por id
  *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -125,7 +126,7 @@ router.get(
 router.put(
   '/users/:id',
   authMiddleware,
-  adaptRoute(new EditarUsuarioController())
+  adaptRoute(new EditarUsuarioController()),
 );
 
 /**
@@ -134,6 +135,8 @@ router.put(
  *   delete:
  *     summary: Remove o usuário por id
  *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -152,7 +155,7 @@ router.put(
 router.delete(
   '/users/:id',
   authMiddleware,
-  adaptRoute(new DeletarUsuarioController())
+  adaptRoute(new DeletarUsuarioController()),
 );
 
 module.exports = router;

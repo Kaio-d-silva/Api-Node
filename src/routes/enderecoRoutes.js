@@ -6,6 +6,8 @@ const DeletarEnderecoController = require('../controllers/endereco/deletar-ender
 const adaptRoute = require('../adapters/express-route-adapters');
 const router = express.Router();
 
+const authMiddleware = require('../middlewares/auth-middlewares');
+
 /**
  * @swagger
  * components:
@@ -75,6 +77,8 @@ const router = express.Router();
  *   post:
  *     summary: Creat a new endereco
  *     tags: [Enderecos]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -90,13 +94,15 @@ const router = express.Router();
  */
 
 // Endpoint para criação de recurso
-router.post('/enderecos', adaptRoute(new CriaEnderecoController()));
+router.post('/enderecos',authMiddleware, adaptRoute(new CriaEnderecoController()));
 /**
  * @swagger
  * /api/enderecos:
  *   get:
  *     summary: Retund the list of the enderecos
  *     tags: [Enderecos]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The list of the enderecos
@@ -109,7 +115,7 @@ router.post('/enderecos', adaptRoute(new CriaEnderecoController()));
  */
 
 // Endpoint para listagem de recursos
-router.get('/enderecos', adaptRoute(new ListarEnderecoController()));
+router.get('/enderecos',authMiddleware, adaptRoute(new ListarEnderecoController()));
 
 /**
  * @swagger
@@ -117,6 +123,8 @@ router.get('/enderecos', adaptRoute(new ListarEnderecoController()));
  *   put:
  *     summary: Upadate the endereco by the id
  *     tags: [Enderecos]
+*     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -140,7 +148,7 @@ router.get('/enderecos', adaptRoute(new ListarEnderecoController()));
  */
 
 // Endpoint para atualização de recurso
-router.put('/enderecos/:id', adaptRoute(new EditarEnderecoController()));
+router.put('/enderecos/:id',authMiddleware, adaptRoute(new EditarEnderecoController()));
 
 /**
  * @swagger
@@ -148,6 +156,8 @@ router.put('/enderecos/:id', adaptRoute(new EditarEnderecoController()));
  *   delete:
  *     summary: Remove the endereco by id
  *     tags: [Enderecos]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -164,6 +174,6 @@ router.put('/enderecos/:id', adaptRoute(new EditarEnderecoController()));
  */
 
 // Endpoint para deletar recurso
-router.delete('/enderecos/:id', adaptRoute(new DeletarEnderecoController()));
+router.delete('/enderecos/:id',authMiddleware, adaptRoute(new DeletarEnderecoController()));
 
 module.exports = router;

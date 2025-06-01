@@ -4,6 +4,7 @@ const EditarPacienteController = require('../controllers/paciente/editar-pacient
 const DeletarPacienteController = require('../controllers/paciente/deletar-paciente');
 const ListarPacienteController = require('../controllers/paciente/listar-paciente');
 
+const authMiddleware = require('../middlewares/auth-middlewares');
 const adaptRoute = require('../adapters/express-route-adapters');
 const router = express.Router();
 
@@ -62,6 +63,8 @@ const router = express.Router();
  *   post:
  *     summary: Creat a new paciente
  *     tags: [Pacientes]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -77,13 +80,15 @@ const router = express.Router();
  */
 
 // Endpoint para criação de recurso
-router.post('/pacientes', adaptRoute(new CriaPacienteController()));
+router.post('/pacientes',authMiddleware, adaptRoute(new CriaPacienteController()));
 /**
  * @swagger
  * /api/pacientes:
  *   get:
  *     summary: Retund the list of the pacientes
  *     tags: [Pacientes]
+*     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The list of the pacientes
@@ -96,7 +101,7 @@ router.post('/pacientes', adaptRoute(new CriaPacienteController()));
  */
 
 // Endpoint para listagem de recursos
-router.get('/pacientes', adaptRoute(new ListarPacienteController()));
+router.get('/pacientes',authMiddleware, adaptRoute(new ListarPacienteController()));
 
 /**
  * @swagger
@@ -104,6 +109,8 @@ router.get('/pacientes', adaptRoute(new ListarPacienteController()));
  *   put:
  *     summary: Upadate the paciente by the id
  *     tags: [Pacientes]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -127,13 +134,15 @@ router.get('/pacientes', adaptRoute(new ListarPacienteController()));
  */
 
 // Endpoint para atualização de recurso
-router.put('/pacientes/:id', adaptRoute(new EditarPacienteController()));
+router.put('/pacientes/:id',authMiddleware, adaptRoute(new EditarPacienteController()));
 /**
  * @swagger
  * /api/pacientes/{id}:
  *   delete:
  *     summary: Remove the paciente by id
  *     tags: [Pacientes]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -150,6 +159,6 @@ router.put('/pacientes/:id', adaptRoute(new EditarPacienteController()));
  */
 
 // Endpoint para deletar recurso
-router.delete('/pacientes/:id', adaptRoute(new DeletarPacienteController()));
+router.delete('/pacientes/:id',authMiddleware, adaptRoute(new DeletarPacienteController()));
 
 module.exports = router;
