@@ -3,7 +3,7 @@ const Endereco = require('../../models/enderecoModel');
 class CriaEnderecoController {
   async handle(httpRequest) {
     try {
-      const { logradouro, numero, complemento, bairro, cidade, estado, cep } =
+      const { logradouro, numero, complemento, bairro, cidade, estado, cep, id_paciente } =
         httpRequest.body;
 
       const endereco = await Endereco.create({
@@ -14,6 +14,7 @@ class CriaEnderecoController {
         cidade,
         estado,
         cep,
+        id_paciente
       });
 
       return {
