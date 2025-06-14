@@ -1,5 +1,6 @@
 import { Express, Router } from 'express'
 import fg from 'fast-glob'
+import path from 'path'
 
 export default (app: Express): void => {
   const router = Router()
@@ -8,3 +9,4 @@ export default (app: Express): void => {
     (await import(`../../${file}`)).default(router)
   })
 }
+

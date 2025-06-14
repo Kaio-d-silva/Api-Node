@@ -1,7 +1,8 @@
-const Endereco = require('../../models/enderecoModel');
+import Endereco from '../../models/enderecoModel';
+import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
 
-class EditarEnderecoController {
-  async handle(httpRequest) {
+class EditarEnderecoController implements Controller{
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const endereco = await Endereco.findByPk(httpRequest.params.id);
       if (endereco) {
@@ -16,7 +17,7 @@ class EditarEnderecoController {
           body: 'Endereço not found',
         };
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         statusCode: 400,
         body: { error: error.message },
@@ -25,4 +26,4 @@ class EditarEnderecoController {
   }
 }
 
-module.exports = EditarEnderecoController;
+export default EditarEnderecoController

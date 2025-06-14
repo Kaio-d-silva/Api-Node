@@ -1,9 +1,9 @@
-import { HttpRequest, HttpResponse } from '../../interfaces';
+import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
 import User from '../../models/user-model';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 
-class CriarUsuarioController {
+class CriarUsuarioController implements Controller{
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const { nome, email, senha } = httpRequest.body;
