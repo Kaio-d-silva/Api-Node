@@ -1,14 +1,14 @@
 import { Router } from "express";
 import adaptRoute from "../adapters/express-route-adapter";
 import authMiddleware from "../middlewares/auth-middleware";
-import EditarUsuarioController from "../controllers/usuario/editar-usuario";
+import ListarUsuarioController from "../controllers/usuario/listar-usuario";
 
 export default (router: Router): void => {
   /**
    * @swagger
    * /api/users/{id}:
-   *   put:
-   *     summary: Atualiza o usuário por id
+   *   get:
+   *     summary: Retorna a lista de usuários
    *     tags: [Users]
    *     security:
    *       - bearerAuth: []
@@ -17,25 +17,21 @@ export default (router: Router): void => {
    *         name: id
    *         schema:
    *           type: integer
-   *         required: true
+   *         required: false
    *         description: The user id
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           schema:
-   *             $ref: '#/components/schemas/User'
    *     responses:
    *       200:
-   *         description: O usuário foi atualizado com sucesso
-   *       404:
-   *         description: O usuário não foi encontrado
-   *       500:
-   *         description: Algum erro aconteceu
+   *         description: A lista de usuários foi retornada com sucesso
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 $ref: '#/components/schemas/User'
    */
-  router.put(
-    "/users/:id",
+  router.get(
+    "/users{/:id}",
     authMiddleware,
-    adaptRoute(new EditarUsuarioController())
+    adaptRoute(new ListarUsuarioController())
   );
 };

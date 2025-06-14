@@ -1,4 +1,5 @@
 import adaptRoute from "../adapters/express-route-adapter";
+import authMiddleware from "../middlewares/auth-middleware";
 import { Router } from "express";
 import CriarUsuarioController from "../controllers/usuario/criar-usuario";
 
@@ -67,5 +68,5 @@ export default (router: Router): void => {
    *       500:
    *         description: Algum erro aconteceu
    */
-  router.post("/users", adaptRoute(new CriarUsuarioController()));
+  router.post("/users", authMiddleware, adaptRoute(new CriarUsuarioController()));
 };

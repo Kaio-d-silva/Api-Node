@@ -14,8 +14,8 @@ class DeletarUsuarioController implements Controller {
       }
       await usuario.destroy();
       return {
-        statusCode: 204,
-        body: {},
+        statusCode: 200,
+        body: { message: "Usuário deletado com sucesso"},
       };
     } catch (error: any) {
       return {

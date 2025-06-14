@@ -6,7 +6,6 @@ class ListarUsuarioController implements Controller {
     try {
       const userId = httpRequest.params.id;
       const usuario = await User.findByPk(userId);
-      console.log('userId', userId);
       if (!usuario && userId !== '{id}') {
         return {
           statusCode: 404,

@@ -1,11 +1,11 @@
 {
-  "name": "Api-Node",
+  "name": "base-api-crud-pi-senac-2025",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Kaio-d-silva/Api-Node.git",
-  "author": "Your Name <you@example.com>",
   "license": "MIT",
-  "scripts": {"start": "nodemon src/server.ts"},
+  "scripts": {
+    "start": "nodemon src/server.ts"
+  },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/dotenv": "^8.2.3",
