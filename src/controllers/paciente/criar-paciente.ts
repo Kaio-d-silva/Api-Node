@@ -1,12 +1,8 @@
-const Paciente = require('../../models/pacienteModel');
+import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
+import Paciente from '../../models/pacienteModel'
 
-class CriaPacienteController {
-  /**
-   * @param {HttpResquest} resquest - Objeto de requisição HTTP
-   * @returns {Promise<HttpResponse>}
-   */
-
-  async handle(httpRequest) {
+class CriaPacienteController implements Controller{
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const { nome, email, data_nascimento, cpf, telefone, id_endereco } =
         httpRequest.body;
@@ -24,7 +20,7 @@ class CriaPacienteController {
         statusCode: 201,
         body: paciente,
       };
-    } catch (error) {
+    } catch (error: any) {
       return {
         statusCode: 500,
         body: { error: error.message },
@@ -33,4 +29,4 @@ class CriaPacienteController {
   }
 }
 
-module.exports = CriaPacienteController;
+export default CriaPacienteController;

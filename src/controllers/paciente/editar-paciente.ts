@@ -1,7 +1,8 @@
-const Paciente = require('../../models/pacienteModel');
+import { Controller, HttpRequest, HttpResponse } from "../../interfaces";
+import Paciente from "../../models/pacienteModel";
 
-class EditarPacienteController {
-  async handle(httpRequest) {
+class EditarPacienteController implements Controller {
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const paciente = await Paciente.findByPk(httpRequest.params.id);
       if (paciente) {
@@ -16,7 +17,7 @@ class EditarPacienteController {
           body: 'Paciente not found',
         };
       }
-    } catch (error) {
+    } catch (error: any) {
       return {
         statusCode: 400,
         body: { error: error.message },
@@ -25,4 +26,4 @@ class EditarPacienteController {
   }
 }
 
-module.exports = EditarPacienteController;
+export default EditarPacienteController;

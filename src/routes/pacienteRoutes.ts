@@ -1,12 +1,13 @@
-const express = require('express');
-const CriaPacienteController = require('../controllers/paciente/criar-paciente');
-const EditarPacienteController = require('../controllers/paciente/editar-paciente');
-const DeletarPacienteController = require('../controllers/paciente/deletar-paciente');
-const ListarPacienteController = require('../controllers/paciente/listar-paciente');
+import CriaPacienteController from "../controllers/paciente/criar-paciente";
+import EditarPacienteController from "../controllers/paciente/editar-paciente";
+import DeletarPacienteController from "../controllers/paciente/deletar-paciente";
+import ListarPacienteController from "../controllers/paciente/listar-paciente";
 
-const adaptRoute = require('../adapters/express-route-adapters');
-const router = express.Router();
+import adaptRoute from "../adapters/express-route-adapter";
 
+import { Router } from "express";
+
+export default (router: Router): void => {
 /**
  * @swagger
  * components:
@@ -80,10 +81,17 @@ const router = express.Router();
 router.post('/pacientes', adaptRoute(new CriaPacienteController()));
 /**
  * @swagger
- * /api/pacientes:
+ * /api/pacientes/{id}:
  *   get:
  *     summary: Retund the list of the pacientes
  *     tags: [Pacientes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: false
+ *         description: Id do Paciente
  *     responses:
  *       200:
  *         description: The list of the pacientes
@@ -96,7 +104,7 @@ router.post('/pacientes', adaptRoute(new CriaPacienteController()));
  */
 
 // Endpoint para listagem de recursos
-router.get('/pacientes', adaptRoute(new ListarPacienteController()));
+router.get('/pacientes{/:id}', adaptRoute(new ListarPacienteController()));
 
 /**
  * @swagger
@@ -151,5 +159,4 @@ router.put('/pacientes/:id', adaptRoute(new EditarPacienteController()));
 
 // Endpoint para deletar recurso
 router.delete('/pacientes/:id', adaptRoute(new DeletarPacienteController()));
-
-module.exports = router;
+}
