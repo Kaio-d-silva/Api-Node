@@ -42,7 +42,9 @@ Paciente.init(
   },
   {
     sequelize,
-    modelName: 'Pacientes',
+    modelName: 'Paciente',
+    tableName: 'pacientes'
+
   }
 );
 

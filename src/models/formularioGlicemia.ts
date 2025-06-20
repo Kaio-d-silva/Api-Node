@@ -51,7 +51,7 @@ FormularioGlicemia.init(
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        id_paciente: {
+        paciente_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -62,7 +62,8 @@ FormularioGlicemia.init(
     },
     {
         sequelize,
-        tableName: 'FormularioGlicemia',
+        modelName: 'FormularioGlicemia',
+        tableName: 'formularios_glicemia',
     }
 );
 

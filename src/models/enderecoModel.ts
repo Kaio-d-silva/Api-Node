@@ -11,7 +11,7 @@ class Endereco extends Model {
   cidade!: string;
   estado!: string;
   cep!: string;
-  id_paciente!: number;
+  paciente_id!: number;
 }
 
 Endereco.init(
@@ -52,7 +52,7 @@ Endereco.init(
         is: /^\d{5}-\d{3}$/,
       },
     },
-    id_paciente: {
+    paciente_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -63,7 +63,8 @@ Endereco.init(
   },
   {
     sequelize,
-    tableName: 'Endereco',
+    modelName: 'Enderecos',
+    tableName: 'enderecos',
   }
 );
 
