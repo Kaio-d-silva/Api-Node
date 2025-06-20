@@ -6,10 +6,10 @@ import { error } from 'console';
 class CriaEnderecoController implements Controller{
   async handle(httpRequest:HttpRequest): Promise<HttpResponse> {
     try {
-      const { logradouro, numero, complemento, bairro, cidade, estado, cep, id_paciente } =
+      const { logradouro, numero, complemento, bairro, cidade, estado, cep, paciente_id } =
         httpRequest.body;
 
-      const paciente = await Paciente.findByPk(id_paciente)
+      const paciente = await Paciente.findByPk(paciente_id)
       if (!paciente){
         return{
           statusCode: 404,
@@ -25,7 +25,7 @@ class CriaEnderecoController implements Controller{
         cidade,
         estado,
         cep,
-        id_paciente
+        paciente_id
       });
 
       return {
