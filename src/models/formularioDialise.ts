@@ -76,7 +76,11 @@ FormularioDialise.init(
             type: DataTypes.FLOAT,
             allowNull: false
         },
-        pressao_arterial: {
+        pressao_diastolica: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        pressao_sistolica: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
@@ -86,7 +90,7 @@ FormularioDialise.init(
         },
         anotacoes: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
     },
     {
