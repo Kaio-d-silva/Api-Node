@@ -23,7 +23,7 @@ export default (router: Router): void => {
  *         - cidade
  *         - estado
  *         - cep
- *         - id_paciente
+ *         - paciente_id
  *       properties:
  *         id:
  *           type: integer
@@ -49,7 +49,7 @@ export default (router: Router): void => {
  *         cep:
  *           type: string
  *           description: o cep do paciente ou do funcionario
- *         id_paciente:
+ *         paciente_id:
  *           type: integer
  *           description: Id endereço
  *       example:
@@ -61,7 +61,7 @@ export default (router: Router): void => {
  *         cidade: dourados
  *         estado: MS
  *         cep: 78934-222
- *         id_paciente: 1
+ *         paciente_id: 1
  */
 
 /**

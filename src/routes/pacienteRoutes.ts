@@ -15,7 +15,7 @@ export default (router: Router): void => {
  *     Paciente:
  *       type: object
  *       required:
- *         - id_paciente
+ *         - paciente_id
  *         - nome
  *         - data_nascimento
  *         - cpf
