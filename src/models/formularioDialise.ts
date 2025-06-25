@@ -41,11 +41,11 @@ FormularioDialise.init(
             allowNull: false,
         },
         hora_inicio: {
-            type: DataTypes.DATE,
+            type: DataTypes.TIME,
             allowNull: false
         },
         hora_fim: {
-            type: DataTypes.DATE,
+            type: DataTypes.TIME,
             allowNull: false
         },
         solucao_utilizada: {
