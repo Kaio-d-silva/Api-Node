@@ -68,6 +68,8 @@ export default (router: Router):void => {
  *           type: STRING
  *           description: anotações extras
  *       example:
+ *         data_prenchimento : 2016-08-09 04:05:02
+ *         hora_preenchimento : 23:01 
  *         data : 01/02/2000
  *         hora_inicio : 20:00
  *         hora_fim : 21:30
@@ -75,7 +77,7 @@ export default (router: Router):void => {
  *         dreno_inicial : 100
  *         UF_total : 100
  *         tpm : 100
- *         aspecto_liquido_id : viscoso 
+ *         aspecto_liquido_id : 1 
  *         peso_pre_dialise : 80
  *         peso_pos_dialise : 82
  *         pressao_arterial : 1
@@ -113,7 +115,6 @@ export default (router: Router):void => {
 
 router.post(
     "/form-dialise",
-    authMiddleware,
     adaptRoute(new SalvarDadosDialise())
   );
 }
