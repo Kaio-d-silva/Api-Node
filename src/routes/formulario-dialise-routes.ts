@@ -2,6 +2,7 @@ import { Router } from "express";
 import authMiddleware from "../middlewares/auth-middleware";
 import adaptRoute from "../adapters/express-route-adapter";
 import SalvarDadosDialise from "../controllers/form-dialise/salvar-formulario";
+import ListarFormularioDialise from "../controllers/form-dialise/listar-formularios";
 
 export default (router: Router):void => {
 /**
@@ -116,5 +117,30 @@ export default (router: Router):void => {
 router.post(
     "/form-dialise",
     adaptRoute(new SalvarDadosDialise())
+  );
+
+  /**
+ * @swagger
+ * /api/form-dialise/{id}:
+ *   get:
+ *     summary: Salva o usuário
+ *     tags: [FormularioDialise]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema: 
+ *           type: integer
+ *         required: false
+ *         description: id do formulario
+ *     responses:
+ *       201:
+ *         description: Dados do Formulario salvo com sucesso!
+ *       500:
+ *         description: Algum erro aconteceu
+ */
+
+router.get(
+    "/form-dialise{/:id}",
+    adaptRoute(new ListarFormularioDialise())
   );
 }
