@@ -2,8 +2,8 @@
     "development":{
         "dialect": "mysql",
         "host": "0.0.0.0",
-        "database": "db_app",
-        "username": "user_app",
+        "database": "db_pi_senac",
+        "username": "user_defaul",
         "password": "Senha@123",
         "port": 3306
     }
