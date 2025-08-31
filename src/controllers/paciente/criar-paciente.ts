@@ -1,5 +1,5 @@
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
-import Paciente from '../../models/pacienteModel'
+import Paciente from '../../models/paciente-model'
 
 class CriaPacienteController implements Controller{
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
