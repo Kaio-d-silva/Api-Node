@@ -1,7 +1,7 @@
-import Paciente from "./pacienteModel";
-import Endereco from "./enderecoModel";
-import FormularioDialise from "./formularioDialise";
-import AspectosLiquido from "./aspectos-liquido";
+import Paciente from "./paciente-model";
+import Endereco from "./endereco-model";
+import FormularioDialise from "./formularioDialise-model";
+import AspectosLiquido from "./aspectosliquido-model";
 
 Paciente.hasMany(Endereco,{
   foreignKey: 'paciente_id',

@@ -56,7 +56,7 @@ Endereco.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Pacientes',
+        model: 'pacientes',
         key: 'id',
       },
     },
