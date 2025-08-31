@@ -1,6 +1,6 @@
-import Endereco from '../../models/enderecoModel';
+import Endereco from '../../models/endereco-model';
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
-import Paciente from '../../models/pacienteModel';
+import Paciente from '../../models/paciente-model';
 import { error } from 'console';
 
 class CriaEnderecoController implements Controller{

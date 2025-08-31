@@ -1,5 +1,5 @@
 import { Controller, HttpRequest, HttpResponse } from "../../interfaces";
-import Endereco from "../../models/enderecoModel";
+import Endereco from "../../models/endereco-model";
 
 class ListarEnderecoController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {

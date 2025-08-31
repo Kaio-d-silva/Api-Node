@@ -1,4 +1,4 @@
-import Endereco from '../../models/enderecoModel';
+import Endereco from '../../models/endereco-model';
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
 
 class EditarEnderecoController implements Controller{
