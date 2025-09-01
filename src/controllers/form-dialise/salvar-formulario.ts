@@ -1,5 +1,5 @@
 import { Controller, HttpRequest, HttpResponse } from "../../interfaces";
-import FormularioDialise from "../../models/formularioDialise";
+import FormularioDialise from "../../models/formularioDialise-model";
 
 class SalvarDadosDialise implements Controller {
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
@@ -43,11 +43,10 @@ class SalvarDadosDialise implements Controller {
                 glicemia,
                 anotacoes,
             })
-            console.log("terminou de criar")
 
             return {
-                statusCode: 200,
-                body: `formulario salvo com sucesso : ${formulario}`
+                statusCode: 201,
+                body: formulario
             }
 
 

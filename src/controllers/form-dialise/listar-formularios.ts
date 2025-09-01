@@ -1,5 +1,5 @@
 import { Controller, HttpRequest, HttpResponse } from "../../interfaces";
-import FormularioDialise from "../../models/formularioDialise";
+import FormularioDialise from "../../models/formularioDialise-model";
 
 class ListarFormularioDialise implements Controller {
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
