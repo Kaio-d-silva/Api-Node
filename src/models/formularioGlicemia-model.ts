@@ -9,7 +9,8 @@ export class FormularioGlicemia extends Model {
     glicemia_jejum!: number;
     glicemia_pre_almoco!: number;
     glicemia_apos_almoco!: number;
-    glicemia_pre_janta!: number;        
+    glicemia_pre_janta!: number;
+    antacoes?: string
 }
 
 FormularioGlicemia.init(
@@ -50,6 +51,9 @@ FormularioGlicemia.init(
         glicemia_apos_janta: {
             type: DataTypes.FLOAT,
             allowNull: false,
+        },
+        anotacoes: {
+            type: DataTypes.STRING,
         },
         paciente_id: {
         type: DataTypes.INTEGER,
