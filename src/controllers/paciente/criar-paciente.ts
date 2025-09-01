@@ -4,7 +4,8 @@ import Paciente from '../../models/paciente-model'
 class CriaPacienteController implements Controller{
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { nome, email, data_nascimento, cpf, telefone, id_endereco } =
+      
+      const { nome, email = null, data_nascimento, cpf, telefone, id_endereco } =
         httpRequest.body;
 
       const paciente = await Paciente.create({
