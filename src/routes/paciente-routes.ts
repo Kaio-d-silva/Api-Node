@@ -20,7 +20,6 @@ export default (router: Router): void => {
  *         - data_nascimento
  *         - cpf
  *         - telefone
- *         - email
  *       properties:
  *         id:
  *           type: integer
@@ -29,26 +28,29 @@ export default (router: Router): void => {
  *           type: string
  *           description: the name of the paciente
  *         data_nascimento:
- *           type: date
- *           description: The data of birth of the paciente
+ *           type: string
+ *           format: date
+ *           description: The date of birth of the paciente
  *         cpf:
  *           type: string
  *           description: The cpf of the paciente
  *         telefone:
- *           type: integer
+ *           type: string
  *           description: The telephone of the paciente
  *         email:
  *           type: string
- *           description: The email of the paciente
+ *           description: The email of the paciente (opcional)
+ *           nullable: true
  *
  *       example:
- *         id : 1
- *         nome : john Doe
- *         data_nascimento : 01/02/2000
- *         cpf : 304.923.093-65
- *         telefone : 93528451
- *         email : email.example@gmail.com
+ *         id: 1
+ *         nome: John Doe
+ *         data_nascimento: 2000-02-01
+ *         cpf: 304.923.093-65
+ *         telefone: "93528451"
+ *         email: email.example@gmail.com
  */
+
 
 /**
  * @swagger

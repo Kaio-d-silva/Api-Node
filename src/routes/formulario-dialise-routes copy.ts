@@ -11,6 +11,7 @@ export default (router: Router):void => {
  *   schemas:
  *     FormularioDialise:
  *       type: object
+
  *       required:
  *         - data
  *         - hora_inicio
@@ -135,6 +136,12 @@ router.post(
  *     responses:
  *       201:
  *         description: Dados do Formulario salvo com sucesso!
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/FormularioDialise'
  *       500:
  *         description: Algum erro aconteceu
  */
