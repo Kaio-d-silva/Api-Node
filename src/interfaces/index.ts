@@ -4,8 +4,8 @@ export interface Controller {
   export interface HttpRequest {
     body: any;
     params: any;
-    pathParameters: any;
-    queryStringParameters: any;
+    pathParameters?: any;
+    queryStringParameters?: any;
   }
   export interface HttpResponse {
     statusCode: number;
