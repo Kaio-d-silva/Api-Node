@@ -49,9 +49,10 @@ export default (router: Router): void => {
    *                 refreshToken:
    *                   type: string
    *                   description: Token de atualização gerado
-   *               example:
-   *                 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-   *                 refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+   *               example: 
+   *                 message: Login realizado com sucesso
+   *                 accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvLnNpbHZhQGRvbWluaW8uY29tIiwiaWF0IjoxNzU3MjYzMDUyLCJleHAiOjE3NTcyNjM5NTJ9.ReIEODjLBj55dj5bh7rgt3xPCeSOhM50XSP0QRnz1jg
+   *                 refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzU3MjYzMDUyLCJleHAiOjE3NTc4Njc4NTJ9.V2Mi0Ka1gkBM3Dc4bhGOFxe8YhPNAorxr9FuIDm7xi4
    *       401:
    *         description: Credenciais inválidas
    *       404:
