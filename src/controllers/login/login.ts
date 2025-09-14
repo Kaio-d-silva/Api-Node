@@ -61,7 +61,6 @@ export class LoginController implements Controller {
         },
       };
     } catch (error) {
-      console.error('Erro no login:', error);
       return {
         statusCode: 500,
         body: { message: 'Erro interno do servidor' },
