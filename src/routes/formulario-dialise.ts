@@ -98,7 +98,7 @@ export default (router: Router):void => {
 
 /**
  * @swagger
- * /api/form-dialise:
+ * /api/form/dialise:
  *   post:
  *     summary: Salva o usuário
  *     tags: [FormularioDialise]
@@ -116,13 +116,13 @@ export default (router: Router):void => {
  */
 
 router.post(
-    "/form-dialise",
+    "/form/dialise",
     adaptRoute(new SalvarDadosDialise())
   );
 
   /**
  * @swagger
- * /api/form-dialise/{id}:
+ * /api/form/dialise/{id}:
  *   get:
  *     summary: Salva o usuário
  *     tags: [FormularioDialise]
@@ -147,7 +147,7 @@ router.post(
  */
 
 router.get(
-    "/form-dialise{/:id}",
+    "/form/dialise{/:id}",
     adaptRoute(new ListarFormularioDialise())
   );
 }

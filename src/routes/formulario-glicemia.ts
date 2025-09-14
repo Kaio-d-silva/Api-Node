@@ -21,6 +21,13 @@ export default (router: Router):void => {
  *         - paciente_id
  *         - anotacoes
  *       properties:
+ *         data_prenchimento:
+ *           type: string
+ *           format: date-time
+ *           description: Data do preenchimento do formulario
+ *         hora_preenchimento:
+ *          type: string
+ *          format: time
  *         glicemia_jejum:
  *           type: float
  *           description:
@@ -43,6 +50,8 @@ export default (router: Router):void => {
  *           type: integer
  *           description:
  *       example:
+ *         data_prenchimento : 2023-10-10
+ *         hora_preenchimento : 14:30:00
  *         data : 2016-08-09 04:05:02
  *         glicemia_jejum : 92
  *         glicemia_pre_almoco : 105
@@ -62,7 +71,7 @@ export default (router: Router):void => {
 
 /**
  * @swagger
- * /api/form-glicemia:
+ * /api/form/glicemia:
  *   post:
  *     summary: Salva formulario de glicemia
  *     tags: [FormularioGlicemia]
@@ -80,13 +89,13 @@ export default (router: Router):void => {
  */
 
 router.post(
-    "/form-glicemia",
+    "/form/glicemia",
     adaptRoute(new SalvarDadosGlicemia())
   );
 
   /**
  * @swagger
- * /api/form-glicemia/{id}:
+ * /api/form/glicemia/{id}:
  *   get:
  *     summary: Busca formularios preenchidos
  *     tags: [FormularioGlicemia]
@@ -111,7 +120,7 @@ router.post(
  */
 
 router.get(
-    "/form-glicemia{/:id}",
+    "/form/glicemia{/:id}",
     adaptRoute(new ListarFormularioGlicemia())
   );
 }
