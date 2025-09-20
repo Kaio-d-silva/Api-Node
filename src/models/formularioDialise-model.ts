@@ -32,10 +32,10 @@ FormularioDialise.init(
             type: DataTypes.DATE,
             allowNull: false,
         },
-        hora_preenchimento: {
-            type: DataTypes.TIME,
-            allowNull: false,
-        },
+        // hora_preenchimento: {
+        //     type: DataTypes.TIME,
+        //     allowNull: false,
+        // },
         data: {
             type: DataTypes.DATE,
             allowNull: false,

@@ -20,15 +20,15 @@ FormularioGlicemia.init(
         autoIncrement: true,
         primaryKey: true,
         },
-        data_prenchimento: {
+        data_preenchimento: {
         type: DataTypes.DATE,
-        allowNull: false,
+        defaultValue: DataTypes.NOW,
         },
-        hora_preenchimento: {
-        type: DataTypes.TIME,
-        allowNull: false,
-        },
-        data : {
+        // hora_preenchimento: {
+        // type: DataTypes.TIME,
+        // defaultValue: DataTypes.NOW,
+        // },
+        data_formulario : {
         type: DataTypes.DATE,
         allowNull: false,
         },
