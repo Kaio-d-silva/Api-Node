@@ -12,7 +12,7 @@ export default (router: Router):void => {
  *     FormularioGlicemia:
  *       type: object
  *       required:
- *         - data
+ *         - data_formulario
  *         - glicemia_jejum
  *         - glicemia_pre_almoco
  *         - glicemia_apos_almoco
@@ -21,7 +21,7 @@ export default (router: Router):void => {
  *         - paciente_id
  *         - anotacoes
  *       properties:
- *         data_prenchimento:
+ *         data_preenchimento:
  *           type: string
  *           format: date-time
  *           description: Data do preenchimento do formulario
@@ -50,9 +50,9 @@ export default (router: Router):void => {
  *           type: integer
  *           description:
  *       example:
- *         data_prenchimento : 2023-10-10
+ *         data_preenchimento : 2023-10-10
  *         hora_preenchimento : 14:30:00
- *         data : 2016-08-09 04:05:02
+ *         data_formulario : 2016-08-09 04:05:02
  *         glicemia_jejum : 92
  *         glicemia_pre_almoco : 105
  *         glicemia_apos_almoco : 138

@@ -71,7 +71,6 @@ export default (router: Router):void => {
  *           description: anotações extras
  *       example:
  *         data_prenchimento : 2016-08-09 04:05:02
- *         hora_preenchimento : 23:01 
  *         data : 01/02/2000
  *         hora_inicio : 20:00
  *         hora_fim : 21:30
