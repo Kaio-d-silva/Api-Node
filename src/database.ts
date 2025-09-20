@@ -2,7 +2,9 @@ import { Sequelize, Dialect } from 'sequelize';
 import config from './config/config.json';
 type ConfigKeys = 'development'; 
 const env = (process.env.NODE_ENV || 'development') as ConfigKeys;
-const dbConfig = config[env];
+// const dbConfig = config[env];
+const dbConfig = config['development'];
+
 const sequelize = new Sequelize(
   dbConfig.database,
   dbConfig.username,

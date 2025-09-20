@@ -18,6 +18,7 @@ class ListarUsuarioController implements Controller {
         };
       }
       const usuarios = await User.findAll();
+      console.log(usuarios)
       return {
         statusCode: 200,
         body: usuarios,
