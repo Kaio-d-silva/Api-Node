@@ -1,24 +1,36 @@
 import { Controller, HttpRequest, HttpResponse } from "../../interfaces";
-import FormularioDialise from "../../models/formularioDialise-model";
+import { FormDialiseService } from "../../service/form-dialise/form-dialise-service";
 
 class ListarFormularioDialise implements Controller {
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         try {
-            const formularioId = httpRequest.params.id
-            const formulario = await FormularioDialise.findByPk(formularioId)
+            
+            const formDialiseService = new FormDialiseService()
 
-            if (!formulario && formularioId !== "{id}") {
-                return {
+            const { idPaciente } = httpRequest.params
+            const formularios = await formDialiseService.ListarFormulariosDialise(idPaciente)
+            
+            
+            if (!idPaciente){
+                return{
                     statusCode: 404,
-                    body: "Formulario não encontrado"
-                }
-            } else if (formularioId !== "{id}") {
-                return {
-                    statusCode: 200,
-                    body: formulario
+                    body : "É necessário informar o id do paciente"
                 }
             }
-            const formularios = await FormularioDialise.findAll()
+            // if (typeof(idPaciente) != 'number'){
+            //     return{
+            //         statusCode: 400,
+            //         body: "O id do paciente deve ser um numero"
+            //     }
+            // }
+
+            if (!formularios){
+                return{
+                    statusCode: 404,
+                    body: "Este paciente não tem formularios"
+                }
+
+            }
             return {
                 statusCode: 200,
                 body: formularios
