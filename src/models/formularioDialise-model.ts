@@ -28,6 +28,14 @@ FormularioDialise.init(
             autoIncrement: true,
             primaryKey: true,
         },
+        paciente_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'pacientes',
+                key: 'id',
+            }
+        },
         data_prenchimento: {
             type: DataTypes.DATE,
             allowNull: false,

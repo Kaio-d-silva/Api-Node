@@ -5,12 +5,13 @@ export class FormularioGlicemia extends Model {
     id!: number;
     data_preenchimento!: Date;
     hora_preenchimento!: string;
-    data!: Date;
+    data_formulario!: Date;
     glicemia_jejum!: number;
     glicemia_pre_almoco!: number;
     glicemia_apos_almoco!: number;
     glicemia_pre_janta!: number;
-    antacoes?: string
+    antacoes?: string;
+    paciente_id!: number
 }
 
 FormularioGlicemia.init(
