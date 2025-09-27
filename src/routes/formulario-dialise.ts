@@ -3,6 +3,7 @@ import authMiddleware from "../middlewares/auth-middleware";
 import adaptRoute from "../adapters/express-route-adapter";
 import SalvarDadosDialise from "../controllers/form-dialise/salvar-formulario";
 import ListarFormularioDialise from "../controllers/form-dialise/listar-formularios";
+import { DetalhesFormularioDialise } from "../controllers/form-dialise/detalhes-formulario";
 
 export default (router: Router):void => {
 /**
@@ -27,6 +28,9 @@ export default (router: Router):void => {
  *         - glicemia
  *         - anotacoes
  *       properties:
+ *         paciente_id:
+ *          type: INTEGER
+ *          description: ID do paciente que preencheu o formulario
  *         data: 
  *           type: DATE
  *           description: Data do processo de dialise
@@ -70,6 +74,7 @@ export default (router: Router):void => {
  *           type: STRING
  *           description: anotações extras
  *       example:
+ *         paciente_id : 1
  *         data_prenchimento : 2016-08-09 04:05:02
  *         data : 01/02/2000
  *         hora_inicio : 20:00
@@ -121,9 +126,40 @@ router.post(
 
   /**
  * @swagger
+ * /api/pacientes/{idPaciente}/formularios/dialise/:
+ *   get:
+ *     summary: Lista os formulários de diálise de um paciente
+ *     tags: [FormularioDialise]
+ *     parameters:
+ *       - in: path
+ *         name: idPaciente
+ *         schema: 
+ *           type: integer
+ *         required: true
+ *         description: id do paciente
+ *     responses:
+ *       200:
+ *         description: Listagem de formularios ocorreu com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/FormularioDialise'
+ *       500:
+ *         description: Algum erro aconteceu
+ */
+
+router.get(
+    "/pacientes/:idPaciente/formularios/dialise/",
+    adaptRoute(new ListarFormularioDialise())
+  );
+
+/**
+ * @swagger
  * /api/form/dialise/{id}:
  *   get:
- *     summary: Salva o usuário
+ *     summary: Busca detalhes de um formulario específico
  *     tags: [FormularioDialise]
  *     parameters:
  *       - in: path
@@ -146,7 +182,7 @@ router.post(
  */
 
 router.get(
-    "/form/dialise{/:id}",
-    adaptRoute(new ListarFormularioDialise())
+    "/form/dialise/:id",
+    adaptRoute(new DetalhesFormularioDialise())
   );
 }

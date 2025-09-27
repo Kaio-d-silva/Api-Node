@@ -2,7 +2,8 @@ import { Router } from "express";
 import authMiddleware from "../middlewares/auth-middleware";
 import adaptRoute from "../adapters/express-route-adapter";
 import SalvarDadosGlicemia from "../controllers/form-glicemia/salvar-formulario"
-import ListarFormularioGlicemia from "../controllers/form-dialise/listar-formularios";
+import ListarFormularioGlicemia from "../controllers/form-glicemia/listar-formularios";
+import { DetalhesFormularioGlicemia } from "../controllers/form-glicemia/detalhes-formulario";
 
 export default (router: Router):void => {
 /**
@@ -93,11 +94,74 @@ router.post(
     adaptRoute(new SalvarDadosGlicemia())
   );
 
-  /**
+//   /**
+//  * @swagger
+//  * /api/form/glicemia/{id}:
+//  *   get:
+//  *     summary: Busca formularios preenchidos
+//  *     tags: [FormularioGlicemia]
+//  *     parameters:
+//  *       - in: path
+//  *         name: id
+//  *         schema: 
+//  *           type: integer
+//  *         required: false
+//  *         description: id do formulario
+//  *     responses:
+//  *       201:
+//  *         description: Dados do Formulario salvo com sucesso!
+//  *         content:
+//  *           application/json:
+//  *             schema:
+//  *               type: array
+//  *               items:
+//  *                 $ref: '#/components/schemas/FormularioGlicemia'
+//  *       500:
+//  *         description: Algum erro aconteceu
+//  */
+
+// router.get(
+//     "/form/glicemia{/:id}",
+//     adaptRoute(new ListarFormularioGlicemia())
+//   );
+
+    /**
+ * @swagger
+ * /api/pacientes/{idPaciente}/formularios/glicemia/:
+ *   get:
+ *     summary: Lista os formulários de glicemia de um paciente
+ *     tags: [FormularioGlicemia]
+ *     parameters:
+ *       - in: path
+ *         name: idPaciente
+ *         schema: 
+ *           type: integer
+ *         required: true
+ *         description: id do paciente
+ *     responses:
+ *       200:
+ *         description: Listagem de formularios ocorreu com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/FormularioGlicemia'
+ *       500:
+ *         description: Algum erro aconteceu
+ */
+
+router.get(
+    "/pacientes/:idPaciente/formularios/glicemia/",
+    adaptRoute(new ListarFormularioGlicemia())
+  );
+
+
+/**
  * @swagger
  * /api/form/glicemia/{id}:
  *   get:
- *     summary: Busca formularios preenchidos
+ *     summary: Busca detalhes de um formulario específico
  *     tags: [FormularioGlicemia]
  *     parameters:
  *       - in: path
@@ -120,7 +184,7 @@ router.post(
  */
 
 router.get(
-    "/form/glicemia{/:id}",
-    adaptRoute(new ListarFormularioGlicemia())
+    "/form/glicemia/:id",
+    adaptRoute(new DetalhesFormularioGlicemia())
   );
 }
