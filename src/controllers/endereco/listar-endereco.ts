@@ -8,7 +8,6 @@ class ListarEnderecoController implements Controller {
       const endereco = await Endereco.findByPk(enderecoId);
 
 
-      console.log(`O id do endereço é ${enderecoId}`)
 
       if (!endereco && enderecoId !== "{id}") {
         return {

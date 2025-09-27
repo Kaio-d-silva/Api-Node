@@ -7,7 +7,6 @@ class ListarPacienteController implements Controller {
       const pacienteId = httpRequest.params.id
       const paciente = await Paciente.findByPk(pacienteId);
 
-      console.log(`O id do paciente é ${pacienteId}`)
 
       if (!paciente && pacienteId !== "{id}") {
         return {
