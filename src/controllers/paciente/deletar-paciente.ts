@@ -1,22 +1,28 @@
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
 import Paciente from '../../models/paciente-model'
+import { PacienteService } from '../../service/paciente/paciente-service';
 
 class DeletarPacienteController implements Controller{
   async handle(httpRequest: HttpRequest): Promise<HttpResponse>  {
-    try {
-      const paciente = await Paciente.findByPk(httpRequest.params.id);
-      if (paciente) {
-        await paciente.destroy();
-        return {
-          statusCode: 200,
-          body: 'Paciente deletado',
-        };
-      } else {
-        return {
+    try { 
+      console.log("aqui esta o id",httpRequest.params.id)
+      const pacienteService = new PacienteService()
+
+      const pacienteDeletado = await pacienteService.deletaPaciente(httpRequest.params.id)
+
+      console.log(pacienteDeletado)
+    
+      if (!pacienteDeletado){
+        return{
           statusCode: 404,
-          body: 'Paciente not found',
-        };
+          body: { error: "Paciente não encontrado" }
+        }
       }
+
+      return{
+        statusCode: 204
+      }
+
     } catch (error: any) {
       return {
         statusCode: 500,

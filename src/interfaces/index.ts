@@ -2,14 +2,14 @@ export interface Controller {
     handle: (httpRequest: HttpRequest) => Promise<HttpResponse>;
   }
   export interface HttpRequest {
-    body: any;
+    body?: any;
     params: any;
     pathParameters?: any;
     queryStringParameters?: any;
   }
   export interface HttpResponse {
     statusCode: number;
-    body: any;
+    body?: any;
   }
   export interface ExpressMiddleware {
     handle: (req: Request, res: Response, next: () => void) => Promise<void>;

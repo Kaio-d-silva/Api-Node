@@ -14,7 +14,7 @@ class EditarPacienteController implements Controller {
       } else {
         return {
           statusCode: 404,
-          body: 'Paciente not found',
+          body: 'Paciente não encontrado',
         };
       }
     } catch (error: any) {
