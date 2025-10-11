@@ -7,7 +7,11 @@ export class PacienteService {
     }
 
     async cadastrarPaciente(dados: Paciente): Promise<{ paciente: Paciente | null, message: string }> {
+        const cpfPaciente = await Paciente.findOne({ where: { cpf: dados.cpf } })
 
+        if (cpfPaciente) {
+            return { paciente: null, message: 'CPF já cadastrado para outro paciente ID : ' + cpfPaciente.id }
+        }
         const requiredFilds = {
             ...dados
         }
