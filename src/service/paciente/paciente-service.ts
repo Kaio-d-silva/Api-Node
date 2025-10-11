@@ -1,7 +1,7 @@
 import Paciente from "../../models/paciente-model";
 
 export class PacienteService {
-    async CadastrarPaciente(dados: Paciente): Promise<{ paciente: Paciente | null, message: string }> {
+    async cadastrarPaciente(dados: Paciente): Promise<{ paciente: Paciente | null, message: string }> {
 
         const requiredFilds = {
             ...dados

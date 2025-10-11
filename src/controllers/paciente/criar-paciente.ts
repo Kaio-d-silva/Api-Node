@@ -8,7 +8,7 @@ class CriaPacienteController implements Controller{
       
       
       const pacienteService = new PacienteService()
-      const { paciente, message } = await pacienteService.CadastrarPaciente(httpRequest.body);
+      const { paciente, message } = await pacienteService.cadastrarPaciente(httpRequest.body);
 
       if (!paciente){
         return{
