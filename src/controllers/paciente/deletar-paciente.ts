@@ -8,12 +8,12 @@ class DeletarPacienteController implements Controller{
 
       const pacienteService = new PacienteService()
 
-      const pacienteDeletado = await pacienteService.deletaPaciente(httpRequest.params.id)
+      const { status, mensagem } = await pacienteService.deletaPaciente(httpRequest.params.id)
     
-      if (!pacienteDeletado){
+      if (!status){
         return{
           statusCode: 404,
-          body: { error: "Paciente não encontrado" }
+          body: { error: mensagem }
         }
       }
 

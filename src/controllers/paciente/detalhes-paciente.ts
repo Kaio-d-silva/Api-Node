@@ -15,7 +15,7 @@ class DetalhesPacienteController implements Controller {
       }
 
       const pacienteService = new PacienteService();
-      const paciente = await pacienteService.detalhesPaciente(Number(pacienteId));
+      const paciente = await pacienteService.detalhesPaciente(pacienteId);
 
       if (!paciente) {
         return {

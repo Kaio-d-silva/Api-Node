@@ -6,7 +6,7 @@ class EditarPacienteController implements Controller {
     try {
 
       const pacienteService = new PacienteService()
-      const { paciente, message } = await pacienteService.editarPaciente(Number(httpRequest.params.id), httpRequest.body)
+      const { paciente, message } = await pacienteService.editarPaciente(httpRequest.params.id, httpRequest.body)
 
       if (!paciente) {
         return {
