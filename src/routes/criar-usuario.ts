@@ -35,7 +35,6 @@ export default (router: Router): void => {
    *           type: string
    *           description: O email do usuário
    *       example:
-   *         id: 1
    *         nome: "João da Silva"
    *         senha: "123abc"
    *         email: "joao.silva@dominio.com"
