@@ -38,6 +38,11 @@ export class PacienteService {
         return false
     }
 
+    async listaPacientes(): Promise<Paciente[]> {
+        const pacientes = await Paciente.findAll();
+        return pacientes
+    }
+
     async detalhesPaciente(idPaciente: number): Promise<Paciente | null> {
         const pacientes = await Paciente.findByPk(idPaciente);
         return pacientes

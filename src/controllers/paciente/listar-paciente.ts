@@ -1,10 +1,13 @@
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
-import Paciente from '../../models/paciente-model'
+import { PacienteService } from '../../service/paciente/paciente-service';
 
 class ListarPacienteController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const pacientes = await Paciente.findAll();
+      const pacienteService = new PacienteService()
+      
+      const pacientes = await pacienteService.listaPacientes()
+      
       return{
         statusCode: 200,
         body: pacientes
