@@ -5,12 +5,10 @@ import { PacienteService } from '../../service/paciente/paciente-service';
 class DeletarPacienteController implements Controller{
   async handle(httpRequest: HttpRequest): Promise<HttpResponse>  {
     try { 
-      console.log("aqui esta o id",httpRequest.params.id)
+
       const pacienteService = new PacienteService()
 
       const pacienteDeletado = await pacienteService.deletaPaciente(httpRequest.params.id)
-
-      console.log(pacienteDeletado)
     
       if (!pacienteDeletado){
         return{

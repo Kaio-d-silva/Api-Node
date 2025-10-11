@@ -182,10 +182,12 @@ router.put('/pacientes/:id', adaptRoute(new EditarPacienteController()));
  *         required: true
  *         description: the paciente id
  *     responses:
- *       200:
- *         description: The paciente was deleted
+ *       204:
+ *         description: Paciente deletado com sucesso
  *       404:
- *         description: The paciente was not found
+ *         description: Paciente não encontrado
+ *       500:
+ *         description: Erro interno do servidor
  *
  */
 

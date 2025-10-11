@@ -29,8 +29,7 @@ export class PacienteService {
     async deletaPaciente(id: number): Promise<boolean> {
 
         const paciente = await Paciente.findByPk(id);
-        console.log("aqui estao os dados no service",id,paciente)
-
+        
         if (paciente) {
             await paciente.destroy();
             return true
