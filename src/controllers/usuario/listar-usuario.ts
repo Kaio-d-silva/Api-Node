@@ -3,20 +3,7 @@ import User from '../../models/user-model';
 
 class ListarUsuarioController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    try {
-      const userId = httpRequest.params.id;
-      const usuario = await User.findByPk(userId);
-      if (!usuario && userId !== '{id}') {
-        return {
-          statusCode: 404,
-          body: { error: 'Usuário não encontrado' },
-        };
-      } else if (userId !== '{id}') {
-        return {
-          statusCode: 200,
-          body: usuario,
-        };
-      }
+    try {    
       const usuarios = await User.findAll();
       return {
         statusCode: 200,
