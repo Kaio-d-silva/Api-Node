@@ -6,6 +6,7 @@ import ListarPacienteController from "../controllers/paciente/listar-paciente";
 import adaptRoute from "../adapters/express-route-adapter";
 
 import { Router } from "express";
+import DetalhesPacienteController from "../controllers/paciente/detalhes-paciente";
 
 export default (router: Router): void => {
 /**
@@ -113,17 +114,12 @@ export default (router: Router): void => {
 router.post('/pacientes', adaptRoute(new CriaPacienteController()));
 /**
  * @swagger
- * /api/pacientes/{id}:
+ * /api/pacientes:
  *   get:
- *     summary: Retund the list of the pacientes
+ *     summary: Retorna uma lista de pacientes
  *     tags: [Pacientes]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: false
- *         description: Id do Paciente
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: The list of the pacientes
@@ -136,7 +132,35 @@ router.post('/pacientes', adaptRoute(new CriaPacienteController()));
  */
 
 // Endpoint para listagem de recursos
-router.get('/pacientes{/:id}', adaptRoute(new ListarPacienteController()));
+router.get('/pacientes', adaptRoute(new ListarPacienteController()));
+
+ /**
+   * @swagger
+   * /api/pacientes/{id}:
+   *   get:
+   *     summary: Retorna os detalhes do paciente pelo id
+   *     tags: [Pacientes]
+   *     security:
+   *       - bearerAuth: []
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         schema:
+   *           type: integer
+   *         required: true
+   *         description: id do paciente
+   *     responses:
+   *       200:
+   *         description: Dados do paciente
+   *         content:
+   *           application/json:
+   *            schema:
+   *            $ref: '#/components/schemas/Paciente'
+   *         
+   */
+  router.get(
+    "/pacientes/:id",
+    adaptRoute(new DetalhesPacienteController()))
 
 /**
  * @swagger

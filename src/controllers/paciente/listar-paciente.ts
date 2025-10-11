@@ -4,21 +4,6 @@ import Paciente from '../../models/paciente-model'
 class ListarPacienteController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const pacienteId = httpRequest.params.id
-      const paciente = await Paciente.findByPk(pacienteId);
-
-
-      if (!paciente && pacienteId !== "{id}") {
-        return {
-          statusCode: 404,
-          body: { error: "paciente não encontrado" }
-        }
-      } else if (pacienteId !== '{id}') {
-        return {
-          statusCode: 200,
-          body: paciente,
-        };
-      }
       const pacientes = await Paciente.findAll();
       return{
         statusCode: 200,
