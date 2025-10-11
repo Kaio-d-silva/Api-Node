@@ -52,6 +52,44 @@ export default (router: Router): void => {
  *         email: email.example@gmail.com
  */
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     EditarPaciente:
+ *       type: object
+ *       required:
+ *         - nome
+ *         - data_nascimento
+ *         - cpf
+ *         - telefone
+ *       properties:
+ *         nome:
+ *           type: string
+ *           description: the name of the paciente
+ *         data_nascimento:
+ *           type: string
+ *           format: date
+ *           description: The date of birth of the paciente
+ *         cpf:
+ *           type: string
+ *           description: The cpf of the paciente
+ *         telefone:
+ *           type: string
+ *           description: The telephone of the paciente
+ *         email:
+ *           type: string
+ *           description: The email of the paciente (opcional)
+ *           nullable: true
+ *
+ *       example:
+ *         nome: John Doe
+ *         data_nascimento: 2000-02-01
+ *         cpf: 304.923.093-65
+ *         telefone: "93528451"
+ *         email: email.example@gmail.com
+ */
+
 
 /**
  * @swagger
@@ -180,7 +218,7 @@ router.get('/pacientes', adaptRoute(new ListarPacienteController()));
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Paciente'
+ *             $ref: '#/components/schemas/EditarPaciente'
  *     responses:
  *       200:
  *         description: The paciente was updated

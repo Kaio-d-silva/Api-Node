@@ -31,6 +31,7 @@ Paciente.init(
       validate: {
         is: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
       },
+      unique: true,
     },
     telefone: {
       type: DataTypes.STRING,

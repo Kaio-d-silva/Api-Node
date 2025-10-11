@@ -42,4 +42,37 @@ export class PacienteService {
         const pacientes = await Paciente.findByPk(idPaciente);
         return pacientes
     }
+
+    async editarPaciente(id: number, dados: Paciente): Promise<{ paciente: Paciente | null, message: string }> {
+        
+        const paciente = await Paciente.findByPk(id);
+        
+        if (!paciente) {
+            return { paciente: null, message: 'Paciente não encontrado' }
+        }
+
+        const cpfPaciente = await Paciente.findOne({ where: { cpf: dados.cpf } })
+
+        if (cpfPaciente && cpfPaciente.id !== id) {
+            return { paciente: null, message: 'CPF já cadastrado para outro paciente ID : ' + cpfPaciente.id  }
+        }
+        const requiredFilds = {
+            
+        }
+
+        for (const [field, value] of Object.entries(requiredFilds)) {
+            if (value === undefined || value === null || value === '') {
+                return {
+                    paciente,
+                    message: `O campo ${field} é obrigatório.`
+                }
+            }
+        }
+
+        await paciente.update(dados);
+
+
+        return { paciente, message: 'Paciente atualizado com sucesso'}
+
+    }
 }
