@@ -70,7 +70,37 @@ export default (router: Router): void => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Paciente'
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *                 description: the name of the paciente
+ *               data_nascimento:
+ *                 type: string
+ *                 format: date
+ *                 description: The date of birth of the paciente
+ *               cpf:
+ *                 type: string
+ *                 description: The cpf of the paciente
+ *               telefone:
+ *                 type: string
+ *                 description: The telephone of the paciente
+ *               email:
+ *                 type: string
+ *                 description: The email of the paciente (opcional)
+ *                 nullable: true
+ *             example:
+ *               nome: John Doe
+ *               data_nascimento: 2000-02-01
+ *               cpf: 304.923.093-65
+ *               telefone: "93528451"
+ *               email: "email@exemplo.com"
+ *           required:
+ *             - nome
+ *             - data_nascimento
+ *             - cpf
+ *             - telefone
+ 
  *     responses:
  *      201:
  *        description: The Paciente was sucessfully created
