@@ -19,7 +19,7 @@ export default (router: Router): void => {
    *         required: true
    *         description: O id do usuário
    *     responses:
-   *       200:
+   *       204:
    *         description: O usuário foi removido com sucesso
    *       404:
    *         description: O usuário não foi encontrado

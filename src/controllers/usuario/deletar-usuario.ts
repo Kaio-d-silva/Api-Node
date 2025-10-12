@@ -1,22 +1,32 @@
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
 import  User from '../../models/user-model';
+import { UsuarioService } from '../../service/usuario/usuario-service';
 class DeletarUsuarioController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const { id } = httpRequest.params;
     try {
-      const usuario = await User.findByPk(id);
 
-      if (!usuario) {
+      if (!id) {
         return {
           statusCode: 404,
-          body: { error: 'Usuário não encontrado' },
+          body: { error: 'ID do usuário é obrigatório' },
         };
       }
-      await usuario.destroy();
+
+      const usuarioService = new UsuarioService();
+      const { status, mensagem } = await usuarioService.deletarUsuario(id);
+
+      if (!status) {
+        return {
+          statusCode: 400,
+          body: { error: mensagem },
+        };
+      }
+
       return {
-        statusCode: 200,
-        body: { message: "Usuário deletado com sucesso"},
+        statusCode: 204,
       };
+
     } catch (error: any) {
       return {
         statusCode: 500,

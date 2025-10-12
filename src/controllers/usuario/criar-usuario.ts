@@ -1,56 +1,21 @@
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
 import User from '../../models/user-model';
-import bcrypt from 'bcrypt';
+
 import validator from 'validator';
+import { UsuarioService } from '../../service/usuario/usuario-service';
 
 class CriarUsuarioController implements Controller{
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { nome, email, senha } = httpRequest.body;
-    
-      // Validação dos dados de entrada
-      if (!nome || !email || !senha) {
+      const usuarioService = new UsuarioService()
+      const { usuario, mensagem } = await usuarioService.cadastrarUsuario(httpRequest.body)
+
+      if (!usuario) {
         return {
           statusCode: 400,
-          body: { error: 'Todos os campos são obrigatórios' },
+          body: { error: mensagem },
         };
       }
-
-      // Verifica se o nome tem pelo menos 3 caracteres e se o email é válido
-      if (nome.length < 3) {
-        return {
-          statusCode: 400,
-          body: { error: 'Nome deve ter pelo menos 3 caracteres' },
-        };
-      }
-      
-      // Validação dos dados de entrada
-      if (validator.isEmail(email) === false) {
-        return {
-          statusCode: 400,
-          body: { error: 'Email inválido' },
-        };
-      }
-
-      const user = await User.findOne({ where : { email }})
-
-      if (user){
-        return{
-            statusCode: 400,
-            body: { error: 'Email já cadastrado' },
-        }
-      }
-
-
-      const salt = 10;
-
-      const senhaCriptografada = await bcrypt.hash(senha, salt);
-
-      const usuario = await User.create({
-        nome,
-        email,
-        senha: senhaCriptografada,
-      });
 
       return {
         statusCode: 201,

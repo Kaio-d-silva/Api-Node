@@ -1,19 +1,28 @@
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces';
 import User from '../../models/user-model';
+import { UsuarioService } from '../../service/usuario/usuario-service';
 
 class DetalhesUsuarioController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const userId = httpRequest.params.id;
-      const usuario = await User.findByPk(userId);
+      const usuarioId = httpRequest.params.id;
 
-      if (!usuario && userId !== '{id}') {
+      if (!usuarioId || isNaN(Number(usuarioId))) {
+        return {
+          statusCode: 400,
+          body: { error: 'ID do usuario inválido ou não fornecido' },
+        };
+      }
+
+      const usuarioService = new UsuarioService();
+      const usuario = await usuarioService.detalhesUsuario(usuarioId);
+
+      if (!usuario) {
         return {
           statusCode: 404,
-          body: { error: 'Usuário não encontrado' },
+          body: { error: 'usuario não encontrado' },
         };
-      } 
-
+      }
       return {
         statusCode: 200,
         body: usuario,

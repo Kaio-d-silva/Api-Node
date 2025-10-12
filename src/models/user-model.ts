@@ -3,6 +3,7 @@ import sequelize from '../database';
 
 export class User extends Model {
     id!: number;
+    nome!: string;
     email!: string;
     senha!: string;
 }

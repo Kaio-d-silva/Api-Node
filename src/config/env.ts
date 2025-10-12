@@ -15,5 +15,6 @@ export const ENV = {
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || '',
   JWT_REFRESH_EXPIRES_IN: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
   API_VERSION: process.env.API_VERSION || 'v1',
-  UPDATE_MODEL: process.env.UPDATE_MODEL ? toBoolean(process.env.UPDATE_MODEL) : true
+  UPDATE_MODEL: process.env.UPDATE_MODEL ? toBoolean(process.env.UPDATE_MODEL) : true,
+  SALT: process.env.SALT || '10',
 };
